@@ -1,0 +1,159 @@
+---
+const chapters = [
+  ['agentic-challenge', 'Challenge'], ['agentic-team', 'Team'],
+  ['agentic-role', 'Role'], ['agentic-research', 'Research signals'], ['agentic-opportunities', 'Opportunity areas'],
+  ['agentic-direction', 'Product direction'], ['agentic-trust', 'Trust journey'], ['agentic-voice', 'Customer voice'],
+  ['agentic-adoption', 'Adoption'], ['agentic-reflection', 'Reflection'],
+];
+
+const headlineMetrics = [
+  ['36.5%', 'Firewall Cloud Management', '1,752 of 4,800 paying cloud customers'],
+  ['14.7%', 'FMC via Cloud Assist', '7,067 of 48,000 FMC customers'],
+  ['8,819', 'Paying customers enabled', 'Across cloud and FMC deployments'],
+  ['108K+', 'Policies analysed', 'Enterprise-grade production scale'],
+];
+
+const researchSignals = [
+  ['01 · Trust boundary', 'Automate the low-risk work. Earn the high-risk work.', 'Customers welcomed automation for repetitive, efficiency-building tasks. As service impact increased, so did the expectation for human oversight.'],
+  ['02 · Confidence gap', 'Accuracy and accountability travelled together.', 'Hallucinations, unexpected outcomes and unclear responsibility made independent action feel less like magic—and more like an incident report waiting to happen.'],
+  ['03 · Priority workflows', 'Start where effort is high and evidence can be checked.', 'Troubleshooting, traffic review and threat monitoring offered visible value while keeping recommendations inspectable.'],
+  ['04 · Product posture', 'Assist first. Explain always. Act with permission.', 'The strongest direction connected signals, recommendations and actions while keeping approval explicit for consequential changes.'],
+];
+
+const trustJourneys = [
+  ['Insight page', 'Understand and prioritise the signal before assigning any work.', '/work/agenticops/journeys/insight-page'],
+  ['Assign a job from Insights', 'Turn one insight into a bounded job for an AI agent.', '/work/agenticops/journeys/assign-from-insights'],
+  ['Bulk-assign insights', 'Group related insights and assign them as one controlled operation.', '/work/agenticops/journeys/bulk-assign-insights'],
+  ['Manage a job in Agent Workforce', 'Follow progress, inspect evidence and intervene when required.', '/work/agenticops/journeys/manage-agent-job'],
+  ['Configure an AI agent', 'Set the agent’s scope, operating limits and behaviour.', '/work/agenticops/journeys/configure-agent'],
+];
+
+const opportunities = [
+  ['Troubleshooting', 'Run checks, identify likely causes and stage self-healing actions for approval.'],
+  ['Reviewing traffic flows', 'Explain what changed, query flow behaviour and correlate events across tools.'],
+  ['Monitoring threats', 'Prioritise alerts and connect detection to response and containment playbooks.'],
+  ['Reports and audits', 'Generate recurring compliance, executive and operational reports on demand.'],
+  ['Licensing and smart accounts', 'Answer entitlement, renewal and usage questions without the administrative archaeology.'],
+  ['Configuration and provisioning', 'Guide changes, support safe bulk setup and flag conflicts before production does.'],
+];
+
+const quotes = [
+  ['People Driven Technology', 'The analytics and AIOps features being added are a huge benefit to customers. An automated best-practice assessment and feature adoption is great for helping customers make sure they are getting the most out of their security platform.'],
+  ['Core BTS', "I really like the feature adoption. It is very helpful for pointing quick little things to turn on, turn this knob, do it—those kinds of things."],
+  ['Vodafone · in-person EBC', 'We hit the Elephant Flow problem just two days before. I wish we had this—it could have saved several hours for us.'],
+  ['Ross', "Due to downtime we do not update every day during business hours. Missing hit-count data means we do not trust deleting rules. This feature will definitely give us confidence."],
+  ['Cisco IT', 'A lot of TAC cases come down to basic rule misconfigurations. Fixing them upfront helps customers save money and lets network operators work more efficiently.'],
+];
+
+const funnel = [
+  ['108,032', 'Policies analysed', 100], ['20,292', 'Insight-page views', 78], ['6,449', 'Manual analysis runs', 57], ['502', 'Policies remediated', 34],
+];
+---
+
+<div class="agentic-layout" data-agentic-case>
+  <nav class="agentic-nav" aria-label="AgenticOps case study chapters"><p>Inside this case</p><ol>{chapters.map(([id, label]) => <li><a href={`#${id}`} data-agentic-link={id}>{label}</a></li>)}</ol></nav>
+  <details class="agentic-menu"><summary>Explore this case <span aria-hidden="true">＋</span></summary><ol>{chapters.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol></details>
+
+  <main class="agentic-story">
+    <section id="agentic-challenge" class="agentic-section">
+      <p class="agentic-index">01 / The challenge</p><h2>The opportunity was never AI everywhere. It was confidence at the right moment.</h2>
+      <p class="agentic-lead">Network administrators face a constant flood of alerts, fragmented tooling and limited access to experts. The hard part is not generating automation ideas; it is helping teams understand what is happening, why it matters and whether an action is safe enough to trust.</p>
+      <div class="challenge-pair"><article><span>Problem framing</span><h3>Customers feared an incorrect change could break the network faster than AI could help.</h3><p>Across monitoring, troubleshooting, traffic review, reporting, licensing and configuration, the pattern was consistent: teams wanted less hunting, more context and faster prioritisation—but explicit control over any action that could alter live firewall behaviour.</p><ul><li><b>Low trust</b>Autonomous changes feel risky when blast radius is unclear.</li><li><b>High noise</b>Critical signals hide inside operational clutter.</li><li><b>Manual burden</b>Experts lose time assembling evidence before acting.</li></ul></article><article class="goal-card"><span>Design goal</span><h3>Turn agentic assistance into a guided decision system—not a black box.</h3><p>Reduce search cost, explain recommendations in operational language and keep approval visible. The conversation moved from “AI capability” to “operator confidence.”</p><div><i>Analysis-first</i><i>Approval-based</i><i>Workflow-aware</i><i>Explainable</i></div></article></div>
+    </section>
+
+    <section id="agentic-team" class="agentic-section agentic-dark">
+      <p class="agentic-index">02 / My team</p><h2>I drove the work as the connective backbone between research, product and engineering.</h2>
+      <p class="agentic-lead">The partnership was deliberately tight. Research insight, product priorities and engineering reality moved as one decision-making core—not as three polite calendar invitations.</p>
+      <div class="team-core"><span>Core partnership</span><strong>Lead Product Designer · UX Researcher · Product Manager · Engineering Architect · Director, Product Design</strong></div>
+      <div class="team-grid"><article><b>Research bond</b><p>Defined the right questions, decoded trust signals and turned customer input into a usable point of view.</p></article><article><b>PM partnership</b><p>Aligned framing, prioritisation and roadmap logic with business value and product sequence.</p></article><article><b>Engineering alignment</b><p>Kept the concept technically feasible, buildable and credible with architecture and engineering.</p></article><article><b>Extended stakeholders</b><p>Aligned leadership, sales, TMEs, engineering leads and UI teams around execution.</p></article></div>
+    </section>
+
+    <section id="agentic-role" class="agentic-section">
+      <p class="agentic-index">03 / My role</p><h2>Holding the experience vision together from discovery to product direction.</h2>
+      <p class="agentic-lead">I drove the framing, created alignment across functions, translated research into product decisions and kept the team moving toward a sharper, more credible outcome.</p>
+      <div class="role-strip"><article><span>01</span><strong>Strategic backbone</strong><p>Held the story, design direction and decision spine together.</p></article><article><span>02</span><strong>Research partnership</strong><p>Turned interviews, surveys and signals into product principles.</p></article><article><span>03</span><strong>PM co-pilot</strong><p>Shaped the opportunity, roadmap sequence and business narrative.</p></article><article><span>04</span><strong>Cross-functional driver</strong><p>Created clarity for engineering, leadership and stakeholders.</p></article></div>
+    </section>
+
+    <section id="agentic-research" class="agentic-section">
+      <p class="agentic-index">04 / Research signals</p><h2>Research found a trust gradient—not a permission slip.</h2>
+      <p class="agentic-lead">The study moved the conversation beyond “Do customers want AI?” to the more useful question: <em>where has AI earned the right to help, recommend or act?</em> The answer depended on risk, evidence and the operator’s ability to stay in control.</p>
+      <div class="research-proof" aria-label="Research study scale"><article><strong>267</strong><span>Screener responses</span></article><article><strong>64</strong><span>Survey responses</span></article><article><strong>15</strong><span>Customer interviews</span></article><p><b>Mixed-method study</b> · Secondary research, survey and interviews across five operational roles. Plenty of signal; mercifully, no AI-generated enthusiasm was required.</p></div>
+      <div class="signal-grid">{researchSignals.map(([kicker, title, copy]) => <article><span>{kicker}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+      <a class="research-report-link" href="/work/agenticops/research"><span><small>Full research report</small><strong>See how the evidence became product direction</strong></span><b aria-hidden="true">Explore the research →</b></a>
+    </section>
+
+    <section id="agentic-opportunities" class="agentic-section">
+      <p class="agentic-index">05 / Opportunity areas</p><h2>Six workflow clusters emerged as the clearest product wedges.</h2>
+      <p class="agentic-lead">These are not six disconnected features. They are operational jobs where AI can reduce search cost, synthesise evidence and prepare action with different levels of automation confidence.</p>
+      <div class="opportunity-grid">{opportunities.map(([title, copy], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+    </section>
+
+    <section id="agentic-direction" class="agentic-section direction-section">
+      <p class="agentic-index">06 / Product direction</p><h2>The story moved from “AI ideas” to a phased operating model.</h2>
+      <div class="phase-grid"><article><span>Phase 01</span><h3>AI Ops insight layer</h3><p>Help operators understand what is happening, identify what needs attention and investigate faster without relying on scarce expert support.</p><ul><li>Insight page and best-practice recommendations</li><li>Analysis-first assistance</li><li>Clearer issue prioritisation</li></ul></article><article><span>Phase 02</span><h3>AgenticOps workforce</h3><p>Extend insights into assignable jobs for AI agents, with progress, throughput and proposed actions visible before execution.</p><ul><li>Assign and bulk-assign agent jobs</li><li>Monitor work from an agent workforce</li><li>Configure throughput and repeatable operations</li></ul></article></div>
+    </section>
+
+    <section id="agentic-trust" class="agentic-section agentic-dark trust-section">
+      <p class="agentic-index">07 / Trust journey</p><h2>Give the agent a bounded job. Give the operator the final word.</h2>
+      <div class="trust-flow"><article><span>01</span><strong>Assign</strong><p>Turn an insight into a job with goal, scope and owner.</p></article><b>→</b><article><span>02</span><strong>Observe</strong><p>See progress, evidence and what the agent is preparing.</p></article><b>→</b><article><span>03</span><strong>Review</strong><p>Inspect the recommendation and understand its consequence.</p></article><b>→</b><article><span>04</span><strong>Approve</strong><p>Authorise, redirect or stop before execution.</p></article></div>
+      <aside>Autonomy is useful. An obvious stop button is also rather charming.</aside>
+      <div class="journey-index"><header><span>Five connected journeys</span><h3>Follow trust from insight to agent control.</h3><p>Phase 1 makes the signal understandable. Phase 2 turns that understanding into supervised agent work.</p></header><div class="journey-links">{trustJourneys.map(([title,copy,href],index) => <a href={href}><span>{String(index + 1).padStart(2,'0')}</span><div><strong>{title}</strong><p>{copy}</p></div><b aria-hidden="true">↗</b></a>)}</div></div>
+    </section>
+
+    <section id="agentic-voice" class="agentic-section">
+      <p class="agentic-index">08 / Customer voice</p><h2>Customers did not ask for more magic. They asked for less hunting.</h2>
+      <div class="quote-grid">{quotes.map(([source, quote], index) => <blockquote class:list={[index === 0 && 'quote-feature']}><p>“{quote}”</p><cite>{source}</cite></blockquote>)}</div>
+    </section>
+
+    <section id="agentic-adoption" class="agentic-section adoption-dark">
+      <p class="agentic-index">09 / Adoption &amp; product-market evidence</p><h2>The strongest impact story is the move from market reach to AI-guided action.</h2>
+      <p class="agentic-lead">AgenticOps is no longer a future-AI proposition. Adoption is real, production scale is proven and trust is beginning to convert into consequential action.</p>
+      <div class="adoption-baseline">{headlineMetrics.map(([value, label, note]) => <article><span>{label}</span><strong>{value}</strong><p>{note}</p></article>)}</div>
+      <aside class="adoption-wink">The AI had a roadmap. Customers brought receipts.</aside>
+      <div class="adoption-top"><article><span>Production tenants</span><strong>12,175</strong><p>Trial, internal and partner environments</p></article><article><span>AI-powered detection</span><strong>2,290 / 185</strong><p>EVE / Snort ML adoption</p></article><article><span>Manual analysis runs</span><strong>6,449</strong><p>Intentional use beyond passive exposure</p></article></div>
+      <div class="adoption-body"><div class="adoption-bars">{funnel.map(([value, label, width]) => <article style={`--funnel-width:${width}%`}><div><strong>{value}</strong><span>{label}</span></div></article>)}</div><aside><span>Action evidence</span><div><strong>502</strong><small>policies remediated</small></div><div><strong>393</strong><small>tenants acted</small></div><div><strong>161</strong><small>paying customers</small></div><p>The earliest cohort showing that human trust reached AI-guided remediation—not merely dashboard curiosity.</p></aside></div>
+    </section>
+
+    <section id="agentic-reflection" class="agentic-section">
+      <p class="agentic-index">10 / Reflections</p><h2>What changed in my own design judgment.</h2>
+      <div class="reflection-grid"><article><span>I learned</span><h3>Evidence changes the altitude.</h3><ul><li>Adoption baselines move a story from speculative to strategic.</li><li>A principal-level case proves both idea strength and market response.</li><li>Trust metrics matter when tied to remediation and repeated use.</li></ul></article><article><span>I wish</span><h3>The trust journey had been visible earlier.</h3><ul><li>Pair the dashboard and narrative from the beginning.</li><li>Show richer before-and-after operational evidence.</li><li>Connect EVE and Snort ML into the broader platform story sooner.</li></ul></article><article><span>I wonder</span><h3>How quickly can explainable action accelerate?</h3><ul><li>Will reversible recommendations increase remediation?</li><li>Can FMC become the next growth engine?</li><li>What does one unified firewall-AI trust story look like?</li></ul></article></div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const agenticSections = [...document.querySelectorAll<HTMLElement>('.agentic-section')];
+  const agenticLinks = [...document.querySelectorAll<HTMLElement>('[data-agentic-link]')];
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      agenticLinks.forEach((link) => link.toggleAttribute('aria-current', link.dataset.agenticLink === visible.target.id));
+    }, { rootMargin: '-22% 0px -62%', threshold: [0, .2, .5] });
+    agenticSections.forEach((section) => observer.observe(section));
+  }
+</script>
+
+<style>
+  .agentic-layout{width:min(1460px,calc(100vw - 48px));margin:0 auto 120px;display:grid;grid-template-columns:210px minmax(0,1120px);gap:clamp(48px,7vw,120px);align-items:start}.agentic-nav{position:sticky;top:48px;padding-top:110px;max-height:calc(100vh - 60px);overflow:auto}.agentic-nav p{margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.67rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.agentic-nav ol,.agentic-menu ol{margin:0;padding:0;list-style:none}.agentic-nav a{display:block;padding:6px 0;color:var(--muted);font-size:.76rem;text-decoration:none}.agentic-nav a:hover,.agentic-nav a[aria-current]{color:var(--ink);transform:translateX(4px)}.agentic-nav a[aria-current]::before{content:'— ';color:#598cff}.agentic-menu{display:none}.agentic-story{min-width:0}.agentic-section{scroll-margin-top:28px;padding:115px 0;border-top:1px solid var(--line)}.agentic-section:first-child{border-top:0}.agentic-index{margin:0 0 26px;color:#486fd5;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.agentic-section h2{max-width:1000px;font-size:clamp(2.7rem,5vw,5.4rem)}.agentic-opening h2{font-size:clamp(3rem,5.5vw,6rem)}.agentic-lead{max-width:900px;margin:32px 0 0;color:var(--muted);font-size:1.08rem;line-height:1.55}.agentic-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:60px}.agentic-metrics article{min-height:190px;padding:24px;display:flex;flex-direction:column;border-top:3px solid #598cff;background:var(--paper-bright);box-shadow:0 10px 30px #1011130d}.agentic-metrics article:nth-child(2){border-color:#65ba58}.agentic-metrics article:nth-child(3){border-color:#e8a127}.agentic-metrics article:nth-child(4){border-color:#8b5cf6}.agentic-metrics span,.challenge-pair article>span,.team-core>span,.signal-grid article>span,.research-moves span,.phase-grid article>span,.adoption-top span,.adoption-body aside>span,.reflection-grid article>span{color:#598cff;font-size:.62rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}.agentic-metrics strong{margin-top:24px;font:600 clamp(2.2rem,4vw,3.6rem)/1 'Manrope';letter-spacing:-.06em}.agentic-metrics p{margin:auto 0 0;color:var(--muted);font-size:.7rem}.agentic-wink{margin-top:10px;padding:15px 18px;color:#24334d;background:#dce8ff;font:600 .8rem/1.4 'Manrope'}.challenge-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:60px}.challenge-pair>article{padding:30px;background:var(--paper-bright);box-shadow:0 10px 30px #1011130c}.challenge-pair h3{margin:40px 0 16px;font-size:1.65rem;line-height:1.1}.challenge-pair p{color:var(--muted);font-size:.86rem}.challenge-pair ul{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:28px 0 0;padding:0;list-style:none}.challenge-pair li{padding:13px;background:#eeece7;color:var(--muted);font-size:.68rem}.challenge-pair li b{display:block;margin-bottom:8px;color:var(--ink)}.goal-card{border-top:4px solid #598cff}.goal-card>div{display:flex;flex-wrap:wrap;gap:7px;margin-top:30px}.goal-card i{padding:7px 10px;border-radius:999px;background:#eeece7;font-size:.68rem;font-style:normal}.agentic-dark,.adoption-dark{margin-inline:0 calc((100vw - min(1460px,calc(100vw - 48px)))/-2);padding-inline:clamp(28px,5vw,68px) max(28px,calc((100vw - 1180px)/2));color:white;background:#0f172a;border:0}.agentic-dark .agentic-index,.adoption-dark .agentic-index{color:#72cbe9}.agentic-dark .agentic-lead,.adoption-dark .agentic-lead{color:#aab7ca}.team-core{margin-top:50px;padding:28px;border:1px solid #33415a;background:#162138}.team-core>span{color:#72cbe9}.team-core strong{display:block;margin-top:25px;font:600 1.4rem/1.3 'Manrope'}.team-grid,.role-strip,.signal-grid,.research-moves,.opportunity-grid,.reflection-grid{display:grid;gap:10px;margin-top:14px}.team-grid,.role-strip,.signal-grid{grid-template-columns:repeat(4,1fr)}.team-grid article{padding:22px;background:#19243b}.team-grid p{color:#aab7ca;font-size:.75rem}.role-strip article{padding:22px;background:var(--paper-bright);border-top:2px solid #598cff}.role-strip span{color:#598cff;font-size:.65rem}.role-strip strong{display:block;margin-top:35px;font:600 1.08rem 'Manrope'}.role-strip p{color:var(--muted);font-size:.75rem}.signal-grid{margin-top:60px}.signal-grid article{min-height:310px;padding:25px;display:flex;flex-direction:column;background:var(--paper-bright);box-shadow:0 10px 28px #1011130c}.signal-grid h3{margin:35px 0 16px;font-size:1.35rem;line-height:1.08}.signal-grid p{margin:auto 0 0;color:var(--muted);font-size:.76rem}.research-moves{grid-template-columns:repeat(3,1fr);margin-top:55px}.research-moves article{padding:24px;border-top:1px solid var(--line)}.research-moves strong{display:block;margin-top:28px;font:600 1.2rem/1.15 'Manrope'}.research-moves p{color:var(--muted);font-size:.78rem}.opportunity-grid{grid-template-columns:repeat(3,1fr);margin-top:60px}.opportunity-grid article{min-height:230px;padding:24px;background:var(--paper-bright);border-top:4px solid #049fd9}.opportunity-grid span{color:#049fd9;font-size:.65rem;font-weight:600}.opportunity-grid h3{margin:50px 0 18px;font-size:1.25rem}.opportunity-grid p{color:var(--muted);font-size:.78rem}.direction-section{background:#e8edf8;padding-inline:clamp(24px,5vw,68px)}.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:60px}.phase-grid article{padding:32px;background:white}.phase-grid h3{margin:42px 0 18px;font-size:2rem}.phase-grid p,.phase-grid li{color:var(--muted);font-size:.82rem}.phase-grid ul{margin:25px 0 0;padding-left:18px}.trust-flow{display:flex;align-items:stretch;gap:10px;margin-top:60px}.trust-flow article{flex:1;padding:24px;background:#19243b}.trust-flow article span{color:#72cbe9;font-size:.65rem}.trust-flow strong{display:block;margin-top:40px;font:600 1.25rem 'Manrope'}.trust-flow p{color:#aab7ca;font-size:.75rem}.trust-flow>b{align-self:center;color:#72cbe9}.trust-section>aside{margin-top:12px;padding:16px 20px;color:#0f172a;background:#72cbe9;font:600 .8rem 'Manrope'}.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:60px}.quote-grid blockquote{min-height:260px;margin:0;padding:30px;display:flex;flex-direction:column;background:var(--paper-bright);border-top:3px solid #598cff}.quote-grid .quote-feature{grid-column:1/-1;min-height:300px;background:#dce8ff}.quote-grid p{margin:0;font:500 clamp(1.2rem,2.2vw,2rem)/1.25 'Manrope';letter-spacing:-.03em}.quote-grid cite{margin-top:auto;padding-top:35px;font-size:.72rem;font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.07em}.adoption-dark{padding-block:110px}.adoption-top{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:55px}.adoption-top article{padding:24px;background:#18243b;border-top:3px solid #72cbe9}.adoption-top span{color:#72cbe9}.adoption-top strong{display:block;margin-top:26px;font:600 2.7rem/1 'Manrope'}.adoption-top p{color:#aab7ca;font-size:.7rem}.adoption-body{display:grid;grid-template-columns:1.3fr .7fr;gap:12px;margin-top:12px}.adoption-bars{padding:30px;background:white}.adoption-bars article{width:var(--funnel-width);min-width:210px;margin-bottom:10px;background:#0aaad1}.adoption-bars article:nth-child(2){background:#1685b5}.adoption-bars article:nth-child(3){background:#346d96}.adoption-bars article:nth-child(4){background:#66b34e}.adoption-bars article>div{padding:14px 18px;display:flex;justify-content:space-between;color:white}.adoption-bars span{font-size:.7rem}.adoption-body aside{padding:28px;background:white;color:var(--ink)}.adoption-body aside>span{color:#598cff}.adoption-body aside>div{display:grid;grid-template-columns:80px 1fr;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line)}.adoption-body aside strong{font:600 2rem 'Manrope'}.adoption-body aside small{color:var(--muted)}.adoption-body aside p{color:var(--muted);font-size:.75rem}.reflection-grid{grid-template-columns:repeat(3,1fr);margin-top:60px}.reflection-grid article{padding:28px;background:var(--paper-bright)}.reflection-grid h3{margin:45px 0 24px;font-size:1.45rem}.reflection-grid ul{padding-left:18px}.reflection-grid li{margin-bottom:12px;color:var(--muted);font-size:.78rem}.agentic-nav a{transition:color .2s,transform .2s}
+  @media(max-width:1050px){.agentic-layout{grid-template-columns:1fr}.agentic-nav{display:none}.agentic-menu{display:block;position:sticky;top:0;z-index:14;padding:0 16px;background:var(--paper);border-block:1px solid var(--line)}.agentic-menu summary{padding:15px 0;display:flex;justify-content:space-between;cursor:pointer;font-size:.8rem;font-weight:600}.agentic-menu ol{columns:2;padding-bottom:18px}.agentic-menu a{display:block;padding:5px 0;color:var(--muted);font-size:.75rem;text-decoration:none}.agentic-dark,.adoption-dark{margin-inline:calc((100vw - min(100% - 32px,700px))/-2);padding-inline:max(16px,calc((100vw - 700px)/2))}}
+  @media(max-width:760px){.agentic-layout{width:min(100% - 32px,700px)}.agentic-section{padding:80px 0}.agentic-metrics,.team-grid,.role-strip,.signal-grid,.opportunity-grid,.reflection-grid{grid-template-columns:1fr 1fr}.challenge-pair,.phase-grid,.adoption-body{grid-template-columns:1fr}.trust-flow{display:grid;grid-template-columns:1fr}.trust-flow>b{transform:rotate(90deg);justify-self:center}.quote-grid{grid-template-columns:1fr}.quote-grid .quote-feature{grid-column:auto}.adoption-top{grid-template-columns:1fr}.direction-section{margin-inline:-16px;padding-inline:16px}.challenge-pair ul{grid-template-columns:1fr}.agentic-dark,.adoption-dark{margin-inline:-16px;padding-inline:16px}}
+  @media(max-width:500px){.agentic-metrics,.team-grid,.role-strip,.signal-grid,.opportunity-grid,.reflection-grid{grid-template-columns:1fr}.agentic-menu ol{columns:1}.agentic-opening h2,.agentic-section h2{font-size:2.55rem}.adoption-bars{padding:18px}.adoption-bars article{min-width:160px}.quote-grid blockquote{min-height:230px}}
+  @media(prefers-reduced-motion:reduce){.agentic-nav a{transition:none}}
+  .adoption-baseline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:58px}.adoption-baseline article{min-height:180px;padding:24px;display:flex;flex-direction:column;background:#18243b;border-top:3px solid #72cbe9}.adoption-baseline article:nth-child(2){border-color:#72c765}.adoption-baseline article:nth-child(3){border-color:#e8a127}.adoption-baseline article:nth-child(4){border-color:#9b72f2}.adoption-baseline span{color:#9ec9d9;font-size:.61rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.adoption-baseline strong{display:block;margin-top:24px;font:600 clamp(2.2rem,3.8vw,3.6rem)/1 'Manrope';letter-spacing:-.06em}.adoption-baseline p{margin:auto 0 0;color:#aab7ca;font-size:.69rem;line-height:1.4}.adoption-wink{margin-top:10px;padding:15px 18px;color:#102033;background:#72cbe9;font:600 .8rem/1.4 'Manrope'}.adoption-wink+.adoption-top{margin-top:12px}
+  @media(max-width:760px){.adoption-baseline{grid-template-columns:1fr 1fr}}
+  @media(max-width:500px){.adoption-baseline{grid-template-columns:1fr}.adoption-baseline article{min-height:145px}}
+  .research-proof{display:grid;grid-template-columns:repeat(3,150px) minmax(280px,1fr);gap:1px;margin-top:48px;background:var(--line);border:1px solid var(--line)}
+  .research-proof article,.research-proof>p{margin:0;padding:20px;background:var(--paper-bright)}
+  .research-proof strong{display:block;font:600 2.3rem/1 'Manrope';letter-spacing:-.06em}.research-proof span,.research-proof p{color:var(--muted);font-size:.68rem;line-height:1.5}.research-proof p b{color:var(--ink)}
+  .research-report-link{margin-top:14px;padding:24px 26px;display:flex;align-items:center;justify-content:space-between;gap:24px;color:white;background:#17243c;text-decoration:none;transition:transform .2s,background .2s}.research-report-link:hover{transform:translateY(-2px);background:#203253}.research-report-link small{display:block;margin-bottom:9px;color:#72cbe9;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.research-report-link strong{font:600 1.1rem/1.25 'Manrope'}.research-report-link>b{color:#72cbe9;font-size:.75rem;white-space:nowrap}
+  @media(max-width:760px){.research-proof{grid-template-columns:repeat(3,1fr)}.research-proof>p{grid-column:1/-1}.research-report-link{align-items:flex-start;flex-direction:column}}
+  @media(max-width:500px){.research-proof{grid-template-columns:1fr}.research-proof>p{grid-column:auto}}
+  .journey-index{margin-top:58px;padding-top:42px;border-top:1px solid #33415a}.journey-index>header{display:grid;grid-template-columns:180px 1fr;column-gap:34px}.journey-index>header>span{grid-row:1/3;color:#72cbe9;font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.journey-index h3{margin:0;font-size:clamp(1.8rem,3vw,3rem);color:white}.journey-index header p{max-width:680px;margin:14px 0 0;color:#aab7ca;font-size:.78rem}.journey-links{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:32px;background:#33415a;border:1px solid #33415a}.journey-links a{min-height:175px;padding:22px;display:grid;grid-template-columns:34px 1fr auto;gap:12px;color:white;background:#162138;text-decoration:none;transition:background .2s,transform .2s}.journey-links a:first-child{grid-column:1/-1;min-height:145px;background:#1c2a45}.journey-links a:hover{z-index:1;background:#203253;transform:translateY(-2px)}.journey-links>a>span,.journey-links small{color:#72cbe9;font-size:.61rem;letter-spacing:.08em;text-transform:uppercase}.journey-links strong{display:block;margin-top:15px;font:600 1.08rem/1.2 'Manrope'}.journey-links p{margin:11px 0 0;color:#aab7ca;font-size:.7rem;line-height:1.4}.journey-links>a>b{color:#72cbe9;font-size:.8rem}
+  @media(max-width:760px){.journey-index>header{grid-template-columns:1fr}.journey-index>header>span{grid-row:auto;margin-bottom:16px}.journey-links{grid-template-columns:1fr}.journey-links a:first-child{grid-column:auto}.journey-links a{min-height:150px}}
+  .journey-index>header{display:block}.journey-index>header>span{display:block;margin-bottom:16px}.journey-index h3{margin-bottom:12px}.journey-index header p{max-width:none;margin:0}
+  @media(min-width:900px){.journey-index header p{white-space:nowrap}}
+  .journey-links strong{margin-top:0}
+  .journey-links a,.journey-links a:first-child{min-height:128px;padding:18px 20px}.journey-links p{margin-top:7px}.journey-links a{align-content:start}
+  @media(max-width:760px){.journey-links a,.journey-links a:first-child{min-height:124px;padding:17px}}
+</style>

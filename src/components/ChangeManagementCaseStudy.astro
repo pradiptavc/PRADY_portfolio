@@ -1,0 +1,94 @@
+---
+const chapters = [
+  ['challenge','Challenge'],['leadership','Team & role'],['quick-fix','Quick resolution'],['north-star','North star'],['system','System direction'],['outcomes','Outcomes'],['artifact','Source artifact'],['reflection','Reflection']
+];
+const risks = [
+  ['Low visibility','People could not easily see who was actively working on a policy.'],
+  ['High conflict risk','One administrator could overwrite another without enough warning or guardrails.'],
+  ['Operational pressure','A wrong change could disrupt production and create business impact.'],
+];
+const systemMoves = [
+  ['Ticket ownership','Link the change-management flow to tickets, make authorship and status visible, and reduce ambiguity about responsibility.'],
+  ['Review workflow','Support network admins and reviewers with a clearer queue, submitted-change context and inspect-before-approval behavior.'],
+  ['Stage and release','Move approved changes toward deployment with visible progression instead of an implied last-mile handoff.'],
+  ['Traceability','Keep ticket details, comments, approvals and change logs together so the history survives handoffs.'],
+  ['Lightweight administration','Use a focused desktop experience with role-appropriate views for both Kit and Nik.'],
+  ['Phased evolution','Separate the immediate safety fix from the fuller product vision, then use real feedback to keep both connected.'],
+];
+---
+
+<div class="change-layout">
+  <aside class="change-nav" aria-label="Change Management chapters">
+    <p>Case Study 03</p>
+    <ol>{chapters.map(([id,label],i)=><li><a href={`#${id}`}><span>{String(i+1).padStart(2,'0')}</span>{label}</a></li>)}</ol>
+  </aside>
+  <main class="change-story">
+    <details class="change-menu">
+      <summary>Explore this case study <span>＋</span></summary>
+      <nav aria-label="Change Management chapter menu"><ol>{chapters.map(([id,label],i)=><li><a href={`#${id}`}><span>{String(i+1).padStart(2,'0')}</span>{label}</a></li>)}</ol></nav>
+    </details>
+
+  <section id="challenge" class="story-section challenge">
+    <p class="index">01 / The challenge</p>
+    <h2>The real problem was not editing policy. It was coordinating change safely across multiple operators.</h2>
+    <p class="lead">Several administrators could work on the same firewall policy. One person could unintentionally overwrite another, create conflicts, lock inconsistencies, or leave an urgent change without a clear owner. The interface needed to answer a very human question: <em>who is touching what—and should they be?</em></p>
+    <div class="challenge-grid"><article><span>Problem frame</span><h3>Multiple admins could collide on the same policy, and the system offered too little shared control.</h3><div class="risk-grid">{risks.map(([title,copy])=><div><strong>{title}</strong><p>{copy}</p></div>)}</div></article><article><span>Design goal</span><h3>Turn change management into a shared decision system with clear ownership and safer execution.</h3><p>Know who owns the work, prevent accidental overrides, support review before release, and preserve a reliable history of change.</p><div class="tags"><i>Ownership</i><i>Collision prevention</i><i>Reviewability</i><i>Traceability</i></div></article></div>
+  </section>
+
+  <section id="leadership" class="story-section leadership">
+    <p class="index">02 / Team and leadership</p>
+    <h2>I connected product urgency with research, architecture, and execution.</h2>
+    <p class="lead">The immediate fix had to ship quickly while the longer-term system needed deeper alignment. I held the experience together across product management, UX research, an engineering architect, engineering leads, and the implementation team.</p>
+    <div class="leadership-core"><span>Decision-making core</span><h3>Lead designer, UX researcher, product manager, and engineering architect.</h3><p>I anchored design direction, translated user and business concerns into product logic, and kept collaboration bounded by clear role ownership.</p></div>
+    <div class="leadership-grid"><article><strong>Urgent problem solving</strong><p>Designed the immediate collision-prevention layer inside a tight two-sprint window.</p></article><article><strong>System thinking</strong><p>Expanded the problem from policy locking into a fuller collaborative workflow.</p></article><article><strong>Narrative craft</strong><p>Turned scattered design history into a principal-level story about judgment and constraint.</p></article><article><strong>Cross-functional driver</strong><p>Kept research, architecture, product, and engineering aligned as the model evolved.</p></article></div>
+  </section>
+
+  <section id="quick-fix" class="story-section quick-fix">
+    <p class="index">03 / Quick resolution</p>
+    <h2>The first move was not perfection. It was reducing collision risk inside a brutal delivery window.</h2>
+    <p class="lead">With only two sprints left in the current cycle, we deliberately solved the most dangerous failure first: administrators accidentally editing over one another.</p>
+    <div class="quick-grid"><article><span>Immediate fix</span><h3>Visible policy locking and read-only protection.</h3><p>Admins could see who claimed temporary ownership, avoid accidental overrides, and understand the current state of shared work.</p></article><article><span>Why it worked</span><h3>It changed collaboration with the smallest possible product move.</h3><p>The lock model did not solve the entire workflow, but it removed invisible collisions and bought time to think bigger.</p></article><article><span>What it exposed</span><h3>Locking reduced pain—and revealed the limits of a single-control mechanism.</h3><p>Bigger teams still needed review, ticketing, staged release, and accountable handoffs.</p></article></div>
+    <p class="humor">The lock stopped two people editing the same policy. It did not, unfortunately, teach the organisation how to collaborate.</p>
+  </section>
+
+  <section id="north-star" class="story-section north-star">
+    <p class="index">04 / North star</p><h2>From policy locking to a collaborative change-control system.</h2>
+    <p class="lead">After shipping the immediate safeguard, I regrouped with product and architecture to define a better outcome. The goal shifted from “stop people colliding” to “help teams move changes through authoring, review, and staging with visible ownership and a traceable history.”</p>
+    <div class="north-grid"><article><span>01</span><h3>Authoring</h3><p>Create and manage change tickets with clarity, ownership, comments, and status.</p></article><article><span>02</span><h3>Review</h3><p>Give reviewers a queue and evidence for evaluating and approving changes.</p></article><article><span>03</span><h3>Stage and push</h3><p>Make release readiness visible so approved changes move toward deployment with confidence.</p></article></div>
+    <blockquote>“The right answer was not just to block edits. It was to make collaboration legible.”</blockquote>
+  </section>
+
+  <section id="system" class="story-section system">
+    <p class="index">05 / System direction</p><h2>The final design turned change management into a structured workflow instead of a scattered collection of actions.</h2>
+    <div class="system-grid">{systemMoves.map(([title,copy])=><article><h3>{title}</h3><p>{copy}</p></article>)}</div>
+    <div class="flow-strip"><span>Ticket</span><i>→</i><span>Author</span><i>→</i><span>Review</span><i>→</i><span>Stage</span><i>→</i><span>Deploy</span></div>
+  </section>
+
+  <section id="outcomes" class="story-section outcomes">
+    <p class="index">06 / Outcome</p><h2>The work reframed change management as a collaboration problem—not a UI problem.</h2>
+    <div class="outcome-grid"><article><span>Immediate risk</span><h3>Lock and read-only states created practical relief.</h3><p>Teams gained a direct way to reduce accidental overrides while the deeper system was developed.</p></article><article><span>Strategic direction</span><h3>The project established a clearer north star.</h3><p>The design moved toward a workflow supporting authoring, review, staging, and traceability across roles.</p></article><article><span>Leadership signal</span><h3>The story demonstrates judgment under pressure.</h3><p>It shows how a principal designer identifies the core problem, sequences solutions, and raises the quality of product conversation.</p></article></div>
+    <div class="persona-outcomes"><article><span>Kit · Policy editor</span><h3>See assigned tickets, status, comments, priority, and review details in one working view.</h3><p>The experience gives an editor a clear queue and enough context to understand what requires action.</p></article><article><span>Nik · Policy editor and admin</span><h3>Move across authoring, review, and staging without losing ownership or organisational context.</h3><p>Role-aware views support broader responsibility while keeping ticket state and participants visible.</p></article></div>
+  </section>
+
+  <section id="artifact" class="story-section artifact">
+    <p class="index">07 / Source artifact</p><h2>The complete Figma case-study board, preserved for the detailed walkthrough.</h2>
+    <p class="lead">The board includes the immediate fix, north-star workflow, Kit and Nik outcomes, product screens, and reflection. It is placed in a contained scroll area so the evidence remains available without making the portfolio page approximately the height of a small office building.</p>
+    <figure><div><img src="/images/change-management/change-management-case-study-2019.png" alt="Complete Change Management case-study board from Figma, including challenge, quick fix, north-star workflow, Kit and Nik outcomes, and reflections" loading="lazy" /></div><figcaption><span>2019 · Complete source board</span><p>Exact export from the supplied Figma artboard. Interface artifacts remain unchanged.</p></figcaption></figure>
+  </section>
+
+  <section id="reflection" class="story-section reflection">
+    <p class="index">08 / Reflection</p><h2>Good change management makes coordination visible before consequences make it obvious.</h2>
+    <div class="reflection-grid"><article><h3>I learned</h3><p>Showing adoption baselines early changes the tone from speculative to strategic. A strong story proves not only that the idea was good, but that the market was ready to respond.</p></article><article><h3>I wish</h3><p>The dashboard and case-study narrative had been paired from the beginning so product proof could shape the story earlier.</p></article><article><h3>I wonder</h3><p>How quickly remediation adoption will accelerate as recommendations become more explainable, reversible, and governed by a clearer human–AI trust model.</p></article></div>
+  </section>
+  </main>
+</div>
+
+<style>
+  .change-story{width:min(1180px,calc(100% - 48px));margin:0 auto}.change-story>nav{position:sticky;top:0;z-index:12;display:flex;gap:4px;padding:10px 0;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(12px);border-block:1px solid var(--line);overflow:auto}.change-story>nav a{display:flex;gap:7px;padding:8px 10px;color:var(--muted);font-size:.66rem;white-space:nowrap;text-decoration:none}.change-story>nav span,.index{color:#d45f4c}.story-section{scroll-margin-top:72px;padding:100px 0;border-bottom:1px solid var(--line)}.story-section h2{max-width:1080px;margin:20px 0 35px;font-size:clamp(2.7rem,5vw,5rem)}.index{font-size:.65rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.lead{max-width:920px;color:var(--muted);font-size:1rem}.challenge-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:55px}.challenge-grid>article,.leadership-core,.quick-grid article,.system-grid article,.outcome-grid article,.persona-outcomes article{padding:26px;background:var(--paper-bright);box-shadow:0 8px 28px rgba(32,36,44,.07)}.challenge-grid article>span,.leadership-core>span,.quick-grid span,.outcome-grid span,.persona-outcomes span{color:#d45f4c;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.challenge-grid h3,.leadership-core h3,.quick-grid h3,.outcome-grid h3,.persona-outcomes h3{margin:22px 0 18px;font-size:1.2rem}.challenge-grid p,.leadership-core p,.quick-grid p,.system-grid p,.outcome-grid p,.persona-outcomes p{color:var(--muted);font-size:.74rem}.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:25px}.risk-grid div{padding:14px;background:#f6f2f0}.risk-grid strong{font-size:.72rem}.risk-grid p{font-size:.64rem}.tags{display:flex;gap:6px;flex-wrap:wrap}.tags i{padding:6px 8px;background:#f2eeec;color:var(--muted);font-size:.58rem;font-style:normal}.leadership-core{margin-top:50px;border-top:3px solid #ec6f54}.leadership-grid,.quick-grid,.outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.leadership-grid{grid-template-columns:repeat(4,1fr)}.leadership-grid article{padding:20px;background:#f7f5f6}.leadership-grid strong{font-size:.78rem}.leadership-grid p{color:var(--muted);font-size:.67rem}.humor{margin:14px 0 0;padding:16px 20px;background:#ffe8e2;color:#5e2c24;font:600 .78rem 'Manrope'}.north-star{margin-inline:calc((100vw - min(1180px,calc(100vw - 48px)))/-2);padding-inline:max(24px,calc((100vw - 1180px)/2));background:#111b31;color:white;border:0}.north-star .index{color:#ff8b76}.north-star .lead{color:#aeb8ca}.north-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:50px}.north-grid article{padding:25px;background:#192740}.north-grid span{color:#ff8b76;font-size:.62rem}.north-grid h3{margin:30px 0 15px}.north-grid p{color:#aeb8ca;font-size:.72rem}.north-star blockquote{margin:45px auto 0;max-width:850px;text-align:center;font:600 1.2rem 'Manrope'}.system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:50px}.system-grid article{min-height:185px}.system-grid h3{font-size:1rem}.flow-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:35px;padding:20px;background:#17243c;color:white}.flow-strip span{font:600 .78rem 'Manrope'}.flow-strip i{color:#ff8b76;font-style:normal}.persona-outcomes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.artifact figure{margin:55px 0 0}.artifact figure>div{height:min(72vh,850px);overflow:auto;background:#111;border:1px solid var(--line)}.artifact img{width:100%;height:auto;display:block}.artifact figcaption{display:grid;grid-template-columns:210px 1fr;gap:24px;padding:20px;background:#17243c;color:white}.artifact figcaption span{color:#ff8b76;font-size:.63rem;text-transform:uppercase}.artifact figcaption p{margin:0;color:#b5c1d2;font-size:.72rem}.reflection{border-bottom:0}.reflection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:50px;background:var(--line)}.reflection-grid article{padding:28px;background:var(--paper)}.reflection-grid h3{color:#d45f4c;font-size:1rem}.reflection-grid p{color:var(--muted);font-size:.75rem}
+  @media(max-width:800px){.change-story{width:calc(100% - 32px)}.story-section{padding:75px 0}.challenge-grid,.leadership-grid,.quick-grid,.north-grid,.system-grid,.outcome-grid,.persona-outcomes,.reflection-grid{grid-template-columns:1fr}.north-star{margin-inline:-16px;padding-inline:16px}.risk-grid{grid-template-columns:1fr}.flow-strip{overflow:auto;justify-content:flex-start}.flow-strip span{min-width:max-content}.artifact figcaption{grid-template-columns:1fr}}
+
+  /* Match the chapter-navigation structure used by Case Studies 01 and 02. */
+  .change-layout{width:min(1460px,calc(100vw - 48px));margin:0 auto 120px;display:grid;grid-template-columns:210px minmax(0,1120px);gap:clamp(48px,7vw,120px);align-items:start}.change-story{width:auto;margin:0;min-width:0}.change-story>nav{display:none}.change-nav{position:sticky;top:48px;padding-top:100px;max-height:calc(100vh - 60px);overflow:auto}.change-nav p{margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.67rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.change-nav ol,.change-menu ol{margin:0;padding:0;list-style:none}.change-nav a{display:grid;grid-template-columns:24px 1fr;gap:7px;padding:6px 0;color:var(--muted);font-size:.76rem;text-decoration:none;transition:color .2s,transform .2s}.change-nav a span,.change-menu a span{color:#d45f4c}.change-nav a:hover,.change-nav a:focus-visible{color:var(--ink);transform:translateX(4px)}.change-menu{display:none}.story-section{scroll-margin-top:28px}.north-star{margin-left:0;margin-right:calc((100vw - min(1460px,calc(100vw - 48px)))/-2);padding-left:clamp(28px,5vw,68px);padding-right:max(28px,calc((100vw - 1180px)/2))}
+  @media(max-width:1050px){.change-layout{width:min(700px,calc(100% - 32px));grid-template-columns:1fr;gap:0}.change-nav{display:none}.change-story{width:auto}.change-menu{display:block;position:sticky;top:0;z-index:15;margin-inline:calc((100vw - min(100% - 32px,700px))/-2);padding:0 16px;background:var(--paper);border-block:1px solid var(--line)}.change-menu summary{padding:15px 0;display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;cursor:pointer}.change-menu ol{columns:2;padding-bottom:18px}.change-menu a{display:grid;grid-template-columns:24px 1fr;gap:6px;padding:5px 0;color:var(--muted);font-size:.75rem;text-decoration:none}.north-star{margin-inline:calc((100vw - min(100% - 32px,700px))/-2);padding-inline:max(16px,calc((100vw - 700px)/2))}}
+  @media(max-width:800px){.change-story{width:auto}}
+</style>

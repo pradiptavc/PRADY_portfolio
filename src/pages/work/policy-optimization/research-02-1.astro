@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const chapters = [
+  ['current-state', 'Current state'],
+  ['research-questions', 'Research questions'],
+  ['contextual-study', 'Contextual study'],
+  ['customer-problems', 'Customer problems'],
+  ['synthesis', 'Synthesis'],
+  ['themes', 'Affinity themes'],
+  ['implications', 'Design implications'],
+];
+
+const researchQuestionGroups = [
+  {
+    number: '01',
+    title: 'Organisation & environment',
+    lead: 'Understand the customer',
+    questions: [
+      'How many network-operations teams are in the organisation?',
+      'Do teams have their own labs, and how are they used?',
+      'How are systems classified?',
+      'What are the current firewall pain points?',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Network & topology',
+    lead: 'Understand the operating landscape',
+    questions: [
+      'How many devices and branch offices are managed?',
+      'What does the topology look like?',
+      'How is that topology managed today?',
+      'How are devices distributed across the network?',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Policy-management practices',
+    lead: 'Follow the work as it happens',
+    questions: [
+      'What does a typical day or week look like?',
+      'How often are policies managed?',
+      'What are the main challenges, and how are they handled?',
+      'Which policies and objects are used across the network?',
+      'How do teams define micro-segmentation?',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Deployment confidence',
+    lead: 'Understand the path to change',
+    questions: [
+      'How would teams want to deploy?',
+      'What information creates confidence in a policy change?',
+      'How long should the dual data plane run?',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Upgrade & ideal workflow',
+    lead: 'Reveal risk and unmet needs',
+    questions: [
+      'How do teams upgrade their firewall software?',
+      'What information creates confidence in an upgrade?',
+      'If they could fix anything about the workflow, what would it be?',
+    ],
+  },
+];
+
+const customerProblemGroups = [
+  {
+    title: 'ACL & rule management',
+    tone: 'problem-coral',
+    findings: [
+      'ACL management is entirely manual — no tooling exists',
+      'Rule ordering errors go undetected for months',
+      'No alerting for overlapping or conflicting rules',
+      'Searching within large rulesets is nearly impossible',
+      'Moving rules in the UI is confusing and error-prone',
+      'No save prompt when switching between rules',
+    ],
+  },
+  {
+    title: 'Policy lifecycle',
+    tone: 'problem-yellow',
+    findings: [
+      'No version control on firewall policies',
+      'Hit counts are wiped on every upgrade — losing audit trail',
+      "Can't determine if rules are actually in use",
+      'No lifecycle workflow for automated rule cleanup',
+      'Policy metadata tracked outside FMC in separate tools',
+    ],
+  },
+  {
+    title: 'Approval workflow',
+    tone: 'problem-violet',
+    findings: [
+      'Multi-team approval creates weeks of delay',
+      'InfoSec approval is slow, painful and disconnected',
+      'Incomplete requests cause endless back-and-forth',
+      'No automated approval workflow exists',
+      'Approval tracking lives in ServiceNow, not FMC',
+    ],
+  },
+  {
+    title: 'Upgrade & deployment',
+    tone: 'problem-orange',
+    findings: [
+      'Upgrading consumes every weekend for an entire quarter',
+      '3-stage deployment cycle is entirely manual and slow',
+      'Deployment gives no time estimate and gets stuck',
+      'Multiple firmware layers must upgrade simultaneously',
+      'No choice between stable vs. latest upgrade path',
+      'Testing is entirely manual with no automation',
+    ],
+  },
+  {
+    title: 'Disaster recovery',
+    tone: 'problem-pink',
+    findings: [
+      'DR firewalls in separate data centers fall out of sync',
+      'Forgetting to update DR firewall ACLs is common',
+      'No mechanism to keep DR policies synchronized',
+    ],
+  },
+  {
+    title: 'Team collaboration',
+    tone: 'problem-blue',
+    findings: [
+      '3 teams must coordinate for every policy change',
+      'Teams just pass ServiceNow tickets and rarely talk',
+      "Concurrent edits overwrite each other's changes",
+      "Application teams don't know which firewall to request",
+    ],
+  },
+  {
+    title: 'Monitoring & validation',
+    tone: 'problem-cyan',
+    findings: [
+      'Health monitoring only shows above-threshold, not below',
+      'Pre/post upgrade verification is manual graph comparison',
+      'Quarterly traffic patterns make rule validation unreliable',
+      'FMC hit count visibility is lost on version changes',
+    ],
+  },
+  {
+    title: 'Segmentation & distributed firewall',
+    tone: 'problem-green',
+    findings: [
+      'Micro-segmentation is desired but impossible today',
+      'Network zone segmentation is the only option',
+      'Distributed FW changes require cascading ticket chains',
+    ],
+  },
+  {
+    title: 'Object group management',
+    tone: 'problem-lilac',
+    findings: [
+      "Object Groups can't be shared across different firewalls",
+      'Same OG exists in multiple versions with no sync',
+      "Updating one OG doesn't propagate to linked groups",
+      'Different FW types operate with different OG policies',
+    ],
+  },
+  {
+    title: 'Intelligence & trust',
+    tone: 'problem-rose',
+    findings: [
+      'FW provides no intelligence to prevent misconfigurations',
+      'Application dependency mapping requires manual agents',
+      'Users are skeptical about AI and external policy storage',
+    ],
+  },
+];
+
+const themes = [
+  { number: '01', title: 'Awareness and discoverability', copy: 'Policy health was not continuously visible. Administrators had to know where to look, initiate analysis and assemble an understanding from separate signals.', color: 'violet' },
+  { number: '02', title: 'Understanding and language', copy: 'Technical anomaly labels described what the system detected, but did not consistently explain the operational consequence or the relationship between rules.', color: 'blue' },
+  { number: '03', title: 'Evidence and trust', copy: 'People needed to inspect hit history, rule action, zones, networks, ports and related policy context before trusting a recommendation.', color: 'cyan' },
+  { number: '04', title: 'Prioritisation', copy: 'A large set of findings did not reveal where to begin. Severity alone was insufficient without usage, exposure and consequence.', color: 'green' },
+  { number: '05', title: 'Remediation and control', copy: 'Disabling and deleting were not equivalent decisions. Operators needed a reversible path, an explicit preview and the ability to undo a proposed change.', color: 'yellow' },
+  { number: '06', title: 'Workflow and governance', copy: 'Policy optimisation crossed devices, roles and maintenance windows. Scheduling and change history were part of the core experience, not administrative extras.', color: 'orange' },
+  { number: '07', title: 'Collaboration and scale', copy: 'Evidence had to be legible to network, IT and security roles so that remediation could be reviewed and coordinated across teams.', color: 'coral' },
+];
+
+const findingDetails: Record<string, string> = {
+  'ACL management is entirely manual — no tooling exists': "We don't have a proper ACL management tool and this leads to pain across multiple problems. Someone requests an ACL — need to know who to contact — we don't have any provision on that.",
+  'Rule ordering errors go undetected for months': "We accidentally had the order of rules wrong — it wasn't clear they had rules in the wrong order. A month or longer it stayed like that. There was no warning.",
+  'No alerting for overlapping or conflicting rules': "'I can send an email out anywhere' — there was no warning. Hey, you have overlapping rules! How can we make it easier to alert them?",
+  'Searching within large rulesets is nearly impossible': 'Because of the innumerous rules, participants suggested a way of searching to find the rule they want to switch to from the overlay.',
+  'Moving rules in the UI is confusing and error-prone': 'Finding where to go to move a rule was challenging for most. Drag-and-drop for groups of rules was expected.',
+  'No save prompt when switching between rules': 'Prompting to save changes made to a rule before switching to a new one is desirable. The actions need to be more cohesive within the user flow.',
+  'No version control on firewall policies': "We don't have any version control on the policies yet. No way we can get approval within the cycle. Git for config — but not for ACLs.",
+  'Hit counts are wiped on every upgrade — losing audit trail': 'When an ACL is upgraded, all of the hit counts go away. We should synchronize the counts when we do dual data plane. The visibility and metadata is not there.',
+  "Can't determine if rules are actually in use": 'Certain applications speak only once a quarter, so the ACL counts could be low. Some lines are not being hit — then we look at metadata and reach out to people.',
+  'No lifecycle workflow for automated rule cleanup': 'Delete or retain the ACL. The team gets notification that their application is being deleted. The usual lifecycle is based on metadata — automation will reach out to clients.',
+  'Policy metadata tracked outside FMC in separate tools': 'We document that in a separate tool outside of FMC, then go back and remove it. The metadata is the problem. It is an essential part of the approval process.',
+  'Multi-team approval creates weeks of delay': 'Getting approval from the InfoSec team is a pain point. When we edit a policy, they have to approve it. We document that in a separate tool outside of FMC.',
+  'InfoSec approval is slow, painful and disconnected': 'Any IT change has to go through change-board approval, peer approval and management approval — generally three people, but it could be more.',
+  'Incomplete requests cause endless back-and-forth': "The user doesn't know what firewall they are traversing. 'I need this thing to talk to this other thing.' We don't get what ports they want. The information is incomplete.",
+  'No automated approval workflow exists': 'What takes so long is multiple groups interacting and approving. It would be nice to have some automated approval — especially when something could potentially cause an issue.',
+  'Approval tracking lives in ServiceNow, not FMC': 'We use ServiceNow. Git is used for config changes, but not ACLs. The approval process is in a separate tool; Network Services runs checks and asks InfoSec Ops for approval.',
+  'Upgrading consumes every weekend for an entire quarter': 'Upgrading takes away every single weekend during upgrade time — it can take almost a whole quarter. Reasons include a new feature, an operational issue or a security vulnerability.',
+  '3-stage deployment cycle is entirely manual and slow': 'Three steps: test in the lab, limited deployment for weeks, then general deployment. We see bugs at all three points — all manual.',
+  'Deployment gives no time estimate and gets stuck': "Deployment doesn't convey how long it will take. Sometimes deployment gets stuck and we have to raise a case to resolve it.",
+  'Multiple firmware layers must upgrade simultaneously': 'Multiple layers of upgrades — firmware upgrade, FMC upgrade — mean several upgrades and downtime. FMC and FTD upgrades are needed at the same time.',
+  'No choice between stable vs. latest upgrade path': 'Give users a choice: some want the newest release, others want to wait for the Gold Star from Cisco. Add the software.cisco.com link in the UI.',
+  'Testing is entirely manual with no automation': 'All testing is manual — test cases, DBG, connectivity, failovers and upgrades. We generate test traffic, monitor it and go back through the logs.',
+  'DR firewalls in separate data centers fall out of sync': 'In disaster recovery, an app runs in the primary data centre while the backup is not running. When disaster strikes, the two firewalls can be out of sync.',
+  'Forgetting to update DR firewall ACLs is common': "It is easy for ACL rules to get out of sync because they are in two different data centres. 'Oh, I forgot to update the ACLs' — entirely different firewalls, separate by design.",
+  'No mechanism to keep DR policies synchronized': 'Something we should keep in mind is disaster recovery. When we update one, we sometimes forget to update the other. How do we keep them in sync?',
+  '3 teams must coordinate for every policy change': 'Three teams work together: IT owns the platform, Security owns the policy and the application team has the need. Multiple organisations interact without clear ownership.',
+  'Teams just pass ServiceNow tickets and rarely talk': 'They just pass ServiceNow tickets to each other and really do not talk much. Each team makes changes to its own firewall independently.',
+  "Concurrent edits overwrite each other's changes": 'Multiple network admins work on the same firewall policies. Changes made by one can be unintentionally overwritten by another — leading to conflicts and security vulnerabilities.',
+  "Application teams don't know which firewall to request": "The person in the application team has something on-prem and wants to access SaaS. They don't know what firewall they are traversing unless they are super savvy.",
+  'Health monitoring only shows above-threshold, not below': "Health checks monitor whether something is above the threshold, but do not show what is happening below it. Teams check traffic before and after and compare graphs manually.",
+  'Pre/post upgrade verification is manual graph comparison': 'We have a checklist: traffic before and after, CPU and memory. It takes time to inspect the graphs and compare how the firewall is handling traffic inside FMC.',
+  'Quarterly traffic patterns make rule validation unreliable': 'Certain traffic only appears once a quarter — for example, financial information. How are we going to test with traffic that only appears once a quarter?',
+  'FMC hit count visibility is lost on version changes': 'FMC hit-count visibility is there, but when customers upgrade we lose their hit count. The visibility will not be there.',
+  'Micro-segmentation is desired but impossible today': 'No one really does application segmentation today — it takes too much time and is too complicated. They use macro-segmentation but would like micro-segmentation.',
+  'Network zone segmentation is the only option': "They do network-zone segmentation. We are doing micro-segmentation internally, but today we don't have that visibility. Service-to-service level is the goal.",
+  'Distributed FW changes require cascading ticket chains': 'One team needs to change its firewall, then another team changes theirs. The work moves through a chain of ServiceNow tickets.',
+  "Object Groups can't be shared across different firewalls": "Give networking teams these object groups and let them replicate across networks. There is no way to share and manage Object Groups across different networks.",
+  'Same OG exists in multiple versions with no sync': "Policies are not the same. One firewall has version 6 of a DNS server, another has version 2. There is no way to manage object groups across all firewalls.",
+  "Updating one OG doesn't propagate to linked groups": 'Grouping of groups? If you update one, should the other update? Group A manages the corporate firewall and Group B manages the lab firewall. They should be consistent.',
+  'Different FW types operate with different OG policies': 'Corporate, data-centre, lab and CCI firewalls all operate with different object-group policies. We want a common set of object groups across them.',
+  'FW provides no intelligence to prevent misconfigurations': "The firewall should tell you as much as it can when it thinks you're making a mistake. It should provide valuable metadata and stop you from making that mistake.",
+  'Application dependency mapping requires manual agents': "Application dependency: 'This is what you currently have — does this look good?' The user has no idea. You have to install an agent on those end hosts for it to work.",
+  'Users are skeptical about AI and external policy storage': 'A little skeptical about AI. There may be an issue with having policies outside the data centre. AI-assisted troubleshooting raises hybrid-deployment concerns.',
+};
+---
+
+<BaseLayout
+  title="Contextual research · Policy Analyzer & Optimizer"
+  description="The detailed contextual-research narrative for the Policy Analyzer & Optimizer case study."
+>
+  <article class="research-detail">
+    <header class="detail-hero shell">
+      <a class="back-link" href="/work/policy-optimization#research"><span aria-hidden="true">←</span> Back to Case Study 01</a>
+      <p class="eyebrow">Case study 01 · Contextual research</p>
+      <h1>Understanding the work <em>before</em> simplifying it.</h1>
+      <div class="hero-summary">
+        <div class="hero-summary-item">
+          <span>Where we looked</span>
+          <p>The research moved beyond the policy interface to understand how administrators monitor, interpret, prioritise and act across a wider operational system.</p>
+        </div>
+        <div class="hero-summary-item hero-summary-finding">
+          <span>What changed the brief</span>
+          <p>Policy optimisation was not only a detection problem. It was a confidence, consequence and governance problem.</p>
+        </div>
+        <p class="hero-summary-hook"><span aria-hidden="true">↳</span> The dashboard could spot the mess. Research had to explain why nobody felt safe cleaning it up.</p>
+      </div>
+    </header>
+
+    <div class="detail-layout shell">
+      <nav class="detail-nav" aria-label="Contextual research chapters">
+        <p>On this page</p>
+        <ol>{chapters.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
+      </nav>
+
+      <main class="detail-story">
+        <section id="current-state" class="detail-section">
+          <p class="section-kicker">01 / Current-state experience</p>
+          <h2>The dashboard revealed the cost of fragmented problems—but not where to intervene.</h2>
+          <div class="two-column-copy">
+            <p>Cisco’s TAC engineers were spending day and night investigating customer problems across the firewall-management experience. The research estimated that, in the preceding year, Cisco had spent close to <strong>US$5 million</strong> resolving these serviceability requests—making the fragmented experience a material cost to the business as well as to customers.</p>
+            <p>The dashboard made the breadth of those requests visible across multiple categories. Policy-related problems formed a major part of the picture, but the evidence was dispersed across the system. TAC engineers and product teams could see <em>where problems appeared</em> without a shared view of <em>where to look first, what was connected, or what to address next</em>.</p>
+          </div>
+          <div class="current-state-panel">
+            <figure class="tac-dashboard">
+              <picture>
+                <source srcset="/images/policy-case/tac-technical-advisory-dashboard.webp" type="image/webp">
+                <img src="/images/policy-case/tac-technical-advisory-dashboard.png" alt="TAC Technical Advisory Committee Core Cohesion dashboard showing a radial classification of service requests and a General Connectivity Problems case grouping" width="1698" height="909" loading="lazy">
+              </picture>
+              <figcaption><span>Actual research artifact</span>TAC Technical Advisory Committee · Core Cohesion dashboard</figcaption>
+            </figure>
+            <ol class="breakdown-list">
+              <li><span>Signal was distributed</span><p>Customer issues appeared across the firewall-management system rather than as one connected problem narrative.</p></li>
+              <li><span>Categories required interpretation</span><p>The dashboard classified requests, but teams still had to translate categories into causes, relationships and business consequences.</p></li>
+              <li><span>Focus remained unclear</span><p>TAC and product teams could see the scale of the problem, but not where intervention would create the greatest impact.</p></li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="research-questions" class="detail-section">
+          <p class="section-kicker">02 / Research questions</p>
+          <h2>The inquiry moved from operating context to confident change.</h2>
+          <p class="question-intro">The interview guide explored the environment around policy work before narrowing into the decisions administrators make during analysis and remediation.</p>
+          <ol class="question-grid">
+            {researchQuestionGroups.map((group) => (
+              <li>
+                <header><span>{group.number}</span><div><p>{group.lead}</p><h3>{group.title}</h3></div></header>
+                <ul>{group.questions.map((question) => <li>{question}</li>)}</ul>
+              </li>
+            ))}
+          </ol>
+          <aside class="question-focus"><span>Where the inquiry converged</span><p>Recognising attention → interpreting anomalies → prioritising risk → verifying evidence → remediating safely → fitting change into enterprise governance.</p></aside>
+        </section>
+
+        <section id="contextual-study" class="detail-section dark-section">
+          <p class="section-kicker">03 / Contextual study</p>
+          <h2>The interface was only one part of the job.</h2>
+          <p class="section-intro">Field and contextual research looked at the environment around policy management: the tools administrators monitored, the interruptions they handled, the people involved and the checks performed before a change was considered safe.</p>
+          <div class="field-grid">
+            <article><span>Observe</span><h3>Follow the real workflow</h3><p>Understand how a policy problem is noticed, investigated and escalated across tools rather than studying isolated screens.</p></article>
+            <article><span>Listen</span><h3>Capture decision language</h3><p>Learn how administrators describe risk, evidence and confidence in their own operational vocabulary.</p></article>
+            <article><span>Probe</span><h3>Study the moment of action</h3><p>Identify what people verify immediately before disabling, deleting or postponing a rule change.</p></article>
+            <article><span>Connect</span><h3>Map the wider system</h3><p>Include devices, roles, maintenance windows and audit expectations in the experience model.</p></article>
+          </div>
+          <blockquote>Administrators were not asking the product to make the decision for them. They were asking it to make the decision understandable.</blockquote>
+        </section>
+
+        <section id="customer-problems" class="detail-section customer-problems-section">
+          <p class="section-kicker">04 / Customer problems</p>
+          <h2>43 findings across 10 problem areas.</h2>
+          <p class="problem-intro">The findings below reproduce every card from the original Customer problems group. The group order and color families are retained while the cards are rebuilt in the portfolio’s editorial system.</p>
+          <div class="problem-groups">
+            {customerProblemGroups.map((group, groupIndex) => (
+              <section class={`problem-group ${group.tone}`} aria-labelledby={`problem-group-${groupIndex}`}>
+                <header><span>{String(groupIndex + 1).padStart(2, '0')}</span><h3 id={`problem-group-${groupIndex}`}>{group.title}</h3><p>{group.findings.length} findings</p></header>
+                <ol>{group.findings.map((finding, findingIndex) => (
+                  <li>
+                    <span>{String(findingIndex + 1).padStart(2, '0')} · {group.title}</span>
+                    <p>{finding}</p>
+                    <blockquote>{findingDetails[finding]}</blockquote>
+                  </li>
+                ))}</ol>
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <section id="synthesis" class="detail-section synthesis-section">
+          <p class="section-kicker">05 / Synthesis</p>
+          <section class="workshop-opening" aria-labelledby="workshop-opening-title">
+            <div class="workshop-intro">
+              <h2 id="workshop-opening-title">Two days to turn scattered evidence into a shared picture.</h2>
+              <p>Across a two-day workshop, the team regrouped observations, challenged assumptions and synthesised the customer evidence into the themes that shaped the study.</p>
+            </div>
+            <div class="workshop-gallery">
+              <figure class="workshop-day">
+                <img src="/images/policy-case/workshop-day-1.png" alt="Workshop participants presenting, discussing and arranging research notes together during the first day" width="1718" height="423" loading="lazy">
+                <figcaption><span>Day 01</span>Framing the problem and regrouping observations</figcaption>
+              </figure>
+              <figure class="workshop-day">
+                <img src="/images/policy-case/workshop-day-2.png" alt="Workshop participants working around tables and a shared screen while synthesising evidence on the second day" width="1718" height="430" loading="lazy">
+                <figcaption><span>Day 02</span>Clustering evidence and aligning on research themes</figcaption>
+              </figure>
+            </div>
+          </section>
+          <div class="synthesis-process">
+            <h2>From observations to patterns, then from patterns to product direction.</h2>
+            <div class="synthesis-flow" aria-label="Research synthesis sequence">
+              <article><span>01</span><strong>Raw evidence</strong><p>Interview notes, contextual observations, workflow steps, dashboard findings and moments of hesitation.</p></article>
+              <b aria-hidden="true">→</b>
+              <article><span>02</span><strong>Affinity clustering</strong><p>Related observations grouped by recurring behaviour, unmet need, risk and operational constraint.</p></article>
+              <b aria-hidden="true">→</b>
+              <article><span>03</span><strong>Research themes</strong><p>Clusters consolidated into the themes that explained why policy recommendations were difficult to trust and act on.</p></article>
+              <b aria-hidden="true">→</b>
+              <article><span>04</span><strong>Design implications</strong><p>Each theme translated into a requirement for orientation, evidence, control or governance.</p></article>
+            </div>
+            <aside class="synthesis-note"><span>Why this mattered</span><p>The affinity map prevented the team from treating every observation as an isolated feature request. It exposed the connected system beneath the individual comments.</p></aside>
+          </div>
+        </section>
+
+        <section id="themes" class="detail-section">
+          <p class="section-kicker">06 / Affinity themes</p>
+          <h2>Seven themes organised the evidence.</h2>
+          <div class="theme-stack">
+            {themes.map((theme) => <article class={`theme-card ${theme.color}`}><span>{theme.number}</span><h3>{theme.title}</h3><p>{theme.copy}</p></article>)}
+          </div>
+        </section>
+
+        <section id="implications" class="detail-section implication-section">
+          <p class="section-kicker">07 / What the research changed</p>
+          <h2>The solution needed to support judgment—not simply automate cleanup.</h2>
+          <div class="implication-list">
+            <article><span>Observation</span><p>Policy health was difficult to recognise across fragmented signals.</p><b aria-hidden="true">→</b><span>Design implication</span><p>Provide an orienting health summary with direct paths to supporting evidence.</p></article>
+            <article><span>Observation</span><p>Anomaly terminology did not communicate operational consequence.</p><b aria-hidden="true">→</b><span>Design implication</span><p>Explain what is wrong, why it matters and how the affected rules relate.</p></article>
+            <article><span>Observation</span><p>High-risk changes required repeated manual verification.</p><b aria-hidden="true">→</b><span>Design implication</span><p>Keep expert fields visible and make recommendations inspectable before action.</p></article>
+            <article><span>Observation</span><p>Deletion felt irreversible and unsafe.</p><b aria-hidden="true">→</b><span>Design implication</span><p>Make disabling, previewing and undoing explicit parts of the remediation workflow.</p></article>
+            <article><span>Observation</span><p>Changes had to fit enterprise operating practices.</p><b aria-hidden="true">→</b><span>Design implication</span><p>Carry selected devices, scheduling and change history through the end-to-end flow.</p></article>
+          </div>
+          <div class="research-conclusion">
+            <p>The research reframed the project:</p>
+            <blockquote>The goal was not to make policy complexity disappear. It was to reveal the right detail at the moment a decision depended on it.</blockquote>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="return-nav shell" aria-label="Return to case study">
+      <span>Continue the case study</span>
+      <a href="/work/policy-optimization#research">Return to contextual research <span aria-hidden="true">→</span></a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .workshop-opening{margin-top:0}.workshop-intro{display:block;margin-bottom:42px}.workshop-intro h2{max-width:820px;font-size:clamp(2.5rem,5vw,5rem);line-height:1}.workshop-intro>p:last-child{max-width:680px;margin:30px 0 0;color:var(--muted);font-size:1.08rem}.workshop-gallery{display:grid;gap:14px}.workshop-day{margin:0;background:var(--paper-bright);border:1px solid var(--line);overflow:hidden}.workshop-day img{display:block;width:100%;height:auto;aspect-ratio:1718/426;object-fit:cover}.workshop-day figcaption{display:flex;align-items:baseline;gap:24px;padding:13px 18px;color:var(--muted);font-size:.7rem;line-height:1.45}.workshop-day figcaption span{flex:0 0 58px;color:var(--blue);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.synthesis-process{margin-top:104px;padding-top:0}
+  .research-detail{padding-bottom:120px}.detail-hero{padding:62px 0 105px}.back-link{display:inline-flex;align-items:center;gap:10px;margin-bottom:42px;font-size:.78rem;font-weight:600;text-decoration:none}.back-link:hover{text-decoration:underline}.detail-hero h1{max-width:1050px;font-size:clamp(3.2rem,7vw,7.2rem)}.hero-summary{display:grid;grid-template-columns:1fr 1fr;max-width:1050px;margin:58px 0 0;background:var(--paper-bright);border-top:4px solid var(--blue)}.hero-summary-item{min-height:210px;padding:30px 32px}.hero-summary-item+ .hero-summary-item{border-left:1px solid var(--line)}.hero-summary-item>span{display:block;margin-bottom:38px;color:var(--blue);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.hero-summary-item p{max-width:430px;margin:0;color:var(--muted);font-size:1.02rem;line-height:1.55}.hero-summary-finding{background:#e8e4da}.hero-summary-finding p{color:var(--ink);font-weight:600}.hero-summary-hook{grid-column:1/-1;display:flex;gap:14px;align-items:baseline;margin:0;padding:18px 32px;color:var(--ink);background:#d7edf1;border-top:1px solid #afd1d7;font:600 .82rem/1.45 'Manrope'}.hero-summary-hook>span{color:var(--blue);font-size:1rem}.detail-layout{display:grid;grid-template-columns:190px minmax(0,900px);justify-content:space-between;gap:70px}.detail-nav{position:sticky;top:32px;align-self:start;padding-top:110px}.detail-nav>p{padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em}.detail-nav ol{list-style:none;margin:0;padding:0}.detail-nav a{display:block;padding:7px 0;color:var(--muted);font-size:.78rem;text-decoration:none}.detail-nav a:hover{color:var(--ink)}.detail-section{scroll-margin-top:30px;padding:110px 0;border-top:1px solid var(--line)}.detail-section:first-child{border-top:0}.section-kicker{margin:0 0 25px;color:var(--blue);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em}.detail-section h2{font-size:clamp(2.5rem,5vw,5rem)}.two-column-copy{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:55px}.two-column-copy p,.section-intro{color:var(--muted);font-size:1.08rem}.current-state-panel{display:grid;grid-template-columns:.85fr 1.15fr;gap:1px;margin-top:70px;background:var(--line);border:1px solid var(--line)}.health-visual{min-height:430px;padding:38px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:white}.health-ring{width:210px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#d94c3c 0 46%,#ff9419 46% 64%,#dfe6e8 64% 84%,#7bd78f 84% 100%);position:relative}.health-ring::after{content:'';position:absolute;inset:48px;border-radius:50%;background:white}.health-ring span{position:relative;z-index:1;text-align:center;font:600 1.4rem/1.1 'Manrope'}.health-key{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-top:30px;font-size:.72rem}.health-key span{display:flex;align-items:center;gap:8px}.health-key i{width:8px;height:8px;border-radius:50%}.healthy{background:#7bd78f}.disabled{background:#dfe6e8}.expired{background:#ff9419}.anomaly{background:#d94c3c}.breakdown-list{list-style:none;margin:0;padding:25px 35px;background:var(--paper-bright)}.breakdown-list li{padding:25px 0;border-top:1px solid var(--line)}.breakdown-list li:first-child{border-top:0}.breakdown-list span{font:600 1.15rem 'Manrope'}.breakdown-list p{margin:8px 0 0;color:var(--muted);font-size:.9rem}.dark-section{margin-inline:0;padding-inline:clamp(24px,5vw,46px);color:white;background:var(--navy);border:0}.dark-section .section-kicker{color:var(--cyan)}.dark-section .section-intro{max-width:680px;color:#adc0ce}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:55px;background:#345064;border:1px solid #345064}.field-grid article{min-height:280px;padding:28px;background:#0a1c2d}.field-grid span{color:var(--cyan);font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}.field-grid h3{margin:55px 0 12px;font-size:1.45rem;line-height:1.1}.field-grid p{color:#a9bdcb;font-size:.9rem}.dark-section blockquote{max-width:720px;margin:70px auto 0;padding:30px 0;border-top:3px solid var(--cyan);font:600 clamp(1.8rem,3.5vw,3.2rem)/1.08 'Manrope';letter-spacing:-.04em}.question-grid{list-style:none;margin:65px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.question-grid li{min-height:220px;padding:28px;background:#eaf4f7}.question-grid span{color:var(--blue);font-size:.7rem;font-weight:600}.question-grid p{margin:65px 0 0;font:500 1.25rem/1.25 'Manrope'}.synthesis-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:14px;align-items:stretch;margin-top:65px}.synthesis-flow article{box-sizing:border-box;min-width:0;height:100%;padding:22px;display:flex;flex-direction:column;align-items:flex-start;background:white;border-top:3px solid var(--blue)}.synthesis-flow article>span{color:var(--blue);font-size:.7rem}.synthesis-flow strong{min-height:2.65em;margin-top:42px;font:600 1.1rem/1.2 'Manrope'}.synthesis-flow p{margin:14px 0 0;color:var(--muted);font-size:.78rem}.synthesis-flow>b{display:none}.synthesis-note{display:grid;grid-template-columns:.4fr 1.6fr;gap:30px;margin-top:35px;padding:25px;background:#e8e4da}.synthesis-note span{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em}.synthesis-note p{margin:0;font-weight:600}.theme-stack{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:65px}.theme-card{min-height:290px;padding:28px;display:flex;flex-direction:column}.theme-card>span{font-size:.7rem;font-weight:600}.theme-card h3{margin-top:auto;font-size:1.65rem;line-height:1.05}.theme-card p{font-size:.88rem}.violet{background:#e9dcf4}.blue{background:#dbe5fa}.cyan{background:#d9f0f2}.green{background:#ddedda}.yellow{background:#f5edbd}.orange{background:#f6dfc6}.coral{background:#f0d4d0}.implication-list{margin-top:65px}.implication-list article{display:grid;grid-template-columns:.45fr 1.2fr auto .45fr 1.2fr;gap:18px;align-items:start;padding:25px 0;border-top:1px solid var(--line)}.implication-list span{color:var(--blue);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em}.implication-list p{margin:0;font-size:.9rem}.implication-list b{color:var(--blue)}.research-conclusion{margin-top:80px;padding:45px;background:var(--ink);color:white}.research-conclusion p{margin:0 0 35px;color:var(--cyan);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}.research-conclusion blockquote{margin:0;font:600 clamp(2rem,4vw,3.8rem)/1.06 'Manrope';letter-spacing:-.05em}.return-nav{display:grid;grid-template-columns:.45fr 1.55fr;gap:30px;margin-top:60px;padding-block:55px;border-block:1px solid var(--line)}.return-nav>span{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}.return-nav>a{display:flex;justify-content:space-between;font:600 clamp(1.6rem,3.5vw,3.2rem)/1.05 'Manrope';letter-spacing:-.04em;text-decoration:none}.return-nav>a span{transition:transform .2s}.return-nav>a:hover span{transform:translateX(7px)}
+  @media(max-width:900px){.detail-layout{grid-template-columns:1fr}.detail-nav{display:none}.dark-section{margin-inline:0;padding-inline:clamp(20px,5vw,36px)}.synthesis-flow{grid-template-columns:1fr}.synthesis-flow>b{transform:rotate(90deg);justify-self:start;margin-left:25px}.synthesis-flow article{min-height:auto}.implication-list article{grid-template-columns:1fr}.implication-list b{transform:rotate(90deg);margin-left:10px}.theme-stack{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.detail-hero{padding-top:42px}.back-link{margin-bottom:30px}.hero-summary,.two-column-copy,.current-state-panel,.field-grid,.question-grid,.theme-stack,.synthesis-note,.return-nav{grid-template-columns:1fr}.hero-summary-item{min-height:0;padding:25px 22px}.hero-summary-item+ .hero-summary-item{border-left:0;border-top:1px solid var(--line)}.hero-summary-item>span{margin-bottom:22px}.hero-summary-hook{padding:16px 22px}.workshop-opening{margin-top:34px}.workshop-intro{margin-bottom:28px}.workshop-intro .section-kicker{margin-bottom:20px}.workshop-intro>p:last-child{margin-top:22px}.workshop-day figcaption{align-items:flex-start;gap:14px;padding:12px 14px}.workshop-day figcaption span{flex-basis:52px}.synthesis-process{margin-top:58px;padding-top:52px}.detail-section{padding:80px 0}.health-visual{min-height:360px}.question-grid li{min-height:190px}.theme-card{min-height:250px}.dark-section{padding-block:80px}.return-nav{gap:20px}}
+  /* Compact question groups preserve the breadth of the source interview guide. */
+  .question-intro{max-width:680px;margin:28px 0 0;color:var(--muted);font-size:1rem}.question-grid{margin-top:48px;grid-template-columns:1fr 1fr;gap:10px;background:transparent;border:0}.question-grid>li{min-height:0;padding:22px 22px 20px;background:#eaf4f7;border-top:3px solid #8bcbd8}.question-grid>li:last-child{grid-column:1/-1}.question-grid>li>header{display:flex;gap:14px;align-items:flex-start}.question-grid>li>header>span{flex:0 0 auto;padding-top:3px;color:var(--blue);font-size:.62rem;font-weight:600}.question-grid>li>header p{margin:0 0 4px;color:var(--blue);font:600 .57rem/1.2 'DM Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase}.question-grid h3{font-family:'DM Sans',sans-serif;font-size:1.05rem;line-height:1.2;letter-spacing:-.02em}.question-grid ul{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid #bfd9df}.question-grid ul li{position:relative;min-height:0;padding:8px 0 8px 13px;border-bottom:1px solid #cbdfe3;color:#445157;font-size:.72rem;line-height:1.35}.question-grid ul li::before{content:'·';position:absolute;left:0;color:var(--blue);font-weight:700}.question-grid>li:last-child ul{display:grid;grid-template-columns:repeat(3,1fr);gap:0 20px}.question-focus{display:grid;grid-template-columns:170px 1fr;gap:28px;margin-top:18px;padding:18px 20px;background:#e3ded3}.question-focus span{color:var(--blue);font-size:.59rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase}.question-focus p{margin:0;font-size:.78rem;font-weight:600;line-height:1.45}
+  @media(max-width:620px){.question-grid>li{min-height:0}.question-grid>li:last-child{grid-column:auto}.question-grid>li:last-child ul{display:block}.question-focus{grid-template-columns:1fr;gap:8px}}
+  .current-state-panel{display:block;background:var(--line)}.tac-dashboard{margin:0;background:white}.tac-dashboard picture{display:block;padding:14px;background:#d9d7d1}.tac-dashboard img{width:100%;height:auto}.tac-dashboard figcaption{display:flex;justify-content:space-between;gap:20px;padding:13px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:.72rem}.tac-dashboard figcaption span{color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:.08em}.current-state-panel .breakdown-list{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.current-state-panel .breakdown-list li{border-top:0;border-left:1px solid var(--line);padding:10px 0 10px 24px}.current-state-panel .breakdown-list li:first-child{border-left:0;padding-left:0}
+  @media(max-width:620px){.tac-dashboard picture{padding:6px}.tac-dashboard figcaption{flex-direction:column;gap:4px}.current-state-panel .breakdown-list{grid-template-columns:1fr;gap:0}.current-state-panel .breakdown-list li,.current-state-panel .breakdown-list li:first-child{padding:22px 0;border-left:0;border-top:1px solid var(--line)}}
+  .problem-intro{max-width:680px;margin-top:30px;color:var(--muted);font-size:1.05rem}.problem-groups{display:grid;gap:16px;margin-top:65px}.problem-group{--problem-bg:#eee;--problem-line:#bbb;padding:0 24px 24px;background:color-mix(in srgb,var(--problem-bg) 48%,white);border-top:5px solid var(--problem-line)}.problem-group>header{min-height:90px;display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;border-bottom:1px solid color-mix(in srgb,var(--problem-line) 40%,transparent)}.problem-group>header>span{font-size:.7rem;font-weight:600}.problem-group>header h3{font-size:1.6rem;line-height:1.05;text-transform:capitalize}.problem-group>header p{margin:0;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}.problem-group ol{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.problem-group li{min-height:165px;padding:18px;display:flex;flex-direction:column;background:var(--problem-bg);border:1px solid color-mix(in srgb,var(--problem-line) 42%,transparent)}.problem-group li>span{font-size:.65rem;font-weight:600;opacity:.62}.problem-group li p{margin:auto 0 0;font:500 1rem/1.28 'Manrope';letter-spacing:-.025em}.problem-coral{--problem-bg:#f3c1b6;--problem-line:#d56d58}.problem-yellow{--problem-bg:#f5e5a8;--problem-line:#cba92d}.problem-violet{--problem-bg:#d9c2ef;--problem-line:#9268bb}.problem-orange{--problem-bg:#f2c98d;--problem-line:#d58a29}.problem-pink{--problem-bg:#efbcc8;--problem-line:#cc7186}.problem-blue{--problem-bg:#bcd6ef;--problem-line:#6797c4}.problem-cyan{--problem-bg:#b9e1dc;--problem-line:#5ba89e}.problem-green{--problem-bg:#cce4ad;--problem-line:#7da64c}.problem-lilac{--problem-bg:#cfc8ef;--problem-line:#8277bd}.problem-rose{--problem-bg:#eac1d8;--problem-line:#b86f98}
+  @media(max-width:760px){.problem-group ol{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.problem-group{padding-inline:16px}.problem-group>header{grid-template-columns:36px 1fr}.problem-group>header p{grid-column:2}.problem-group ol{grid-template-columns:1fr}.problem-group li{min-height:140px}}
+  /* Affinity-wall treatment mirrors the grouped post-it composition in the research source. */
+  .customer-problems-section{padding-inline:clamp(0px,2vw,24px)}.problem-groups{gap:26px;padding:22px 18px 28px;background:#f8f7f3;border:1px solid #dedbd3;box-shadow:inset 0 1px white}.problem-group{padding:0 10px 18px;background:transparent;border-top:0}.problem-group>header{min-height:34px;margin-inline:-10px;padding:0 10px;grid-template-columns:30px 1fr auto;background:color-mix(in srgb,var(--problem-bg) 30%,white);border-top:3px solid var(--problem-line);border-bottom:0}.problem-group>header h3{font-family:'DM Sans',sans-serif;font-size:.64rem;font-weight:600;line-height:1.2;letter-spacing:.06em;text-transform:uppercase}.problem-group>header p{font-size:.54rem}.problem-group ol{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:8px;align-items:stretch}.problem-group li{min-height:142px;padding:9px 10px 10px;background:var(--problem-bg);border:0;border-radius:7px;box-shadow:0 2px 5px #23221e14;transform:none;transition:transform .2s ease,box-shadow .2s ease;overflow-wrap:anywhere}.problem-group li::before{display:none}.problem-group li:hover{z-index:1;transform:translateY(-2px);box-shadow:0 7px 14px #23221e1f}.problem-group li>span{font-family:'DM Sans',sans-serif;font-size:.43rem;font-weight:600;line-height:1.2;letter-spacing:.055em;text-transform:uppercase;opacity:.68}.problem-group li p{margin:7px 0 0;padding-bottom:6px;border-bottom:1px solid color-mix(in srgb,var(--problem-line) 28%,transparent);font:600 .62rem/1.22 'DM Sans',sans-serif;letter-spacing:0}.problem-group li blockquote{margin:6px 0 0;font:400 .52rem/1.3 'DM Sans',sans-serif;letter-spacing:0;color:color-mix(in srgb,var(--ink) 78%,var(--problem-line));overflow-wrap:anywhere}
+  @media(max-width:980px){.problem-group ol{grid-template-columns:repeat(3,minmax(0,1fr))}.problem-group li{min-height:136px}}
+  @media(max-width:700px){.customer-problems-section{padding-inline:0}.problem-groups{padding-inline:12px}.problem-group ol{grid-template-columns:repeat(2,minmax(0,1fr))}.problem-group li{min-height:132px}.problem-group>header{grid-template-columns:32px 1fr auto}}
+  @media(max-width:460px){.problem-groups{margin-inline:-8px;padding-inline:8px}.problem-group{padding-inline:8px}.problem-group>header{margin-inline:-8px;padding-inline:8px}.problem-group ol{grid-template-columns:1fr}.problem-group li{min-height:auto}.problem-group>header p{grid-column:auto}.problem-group li p{font-size:.68rem}.problem-group li blockquote{font-size:.58rem}}
+  @media(prefers-reduced-motion:reduce){.return-nav>a span{transition:none}}
+</style>

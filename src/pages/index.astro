@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseCard from '../components/CaseCard.astro';
+
+const metrics = [
+  ['19 years', 'Designing products, platforms and teams'],
+  ['46+ hires', 'Building design capability at scale'],
+  ['5,016 tenants', 'AgenticOps adoption'],
+  ['128K policies', 'Analysed through trusted automation'],
+];
+const leadershipMetrics = [
+  ['30+', 'Workshops facilitated with leaders and teams'],
+  ['20+', 'Designers led across global locations'],
+  ['Top 3', 'Of 400+ Cisco innovations · CEO recognised'],
+  ['CEO', 'Recognition for innovation and entrepreneurship'],
+];
+---
+<BaseLayout>
+  <section class="hero shell">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow"><span class="status-dot"></span> Design leader · Bengaluru, India</p>
+      <h1>I bring storytelling, strategy, and execution to enterprise products where <em>trust has to be earned.</em></h1>
+      <p class="hero-body">Over 19 years across cybersecurity, networking, financial services, healthcare and telecommunications, I’ve helped teams turn high-stakes complexity into products people can understand—and confidently act on.</p>
+      <div class="hero-actions">
+        <a class="button button-dark" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
+        <a class="text-link" href="/about">How I lead <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <aside class="hero-note" data-reveal data-belief-card>
+      <header class="hero-note-head"><p class="eyebrow">My working belief</p><span data-belief-count>01 / 03</span></header>
+      <div class="belief-panels">
+        <blockquote id="belief-judgment" data-belief-panel>Good design makes trade-offs visible so teams can exercise sound judgment with confidence.</blockquote>
+        <blockquote id="belief-capability" data-belief-panel hidden>Design maturity shows up in what teams are empowered and equipped to decide for themselves.</blockquote>
+        <blockquote id="belief-trust" data-belief-panel hidden>Trust grows when system intent, evidence, control and consequence are visible at the moment of action.</blockquote>
+      </div>
+      <div class="belief-signals" role="tablist" aria-label="Working beliefs">
+        <button type="button" role="tab" aria-selected="true" aria-controls="belief-judgment" data-belief-tab="01"><span>01</span><strong>Product judgment</strong></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="belief-capability" data-belief-tab="02" tabindex="-1"><span>02</span><strong>Team capability</strong></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="belief-trust" data-belief-tab="03" tabindex="-1"><span>03</span><strong>Trust</strong></button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="hero-practice shell" data-reveal aria-label="Leadership in practice">
+    <figure class="hero-practice-photo hero-practice-participation">
+      <img src="/images/hero-workshop-participation.webp" width="1100" height="675" alt="Workshop participants collaborating around a table" />
+    </figure>
+    <figure class="hero-practice-photo hero-practice-making">
+      <img src="/images/hero-workshop-making.webp" width="1100" height="675" alt="A participant sketching ideas during a design-thinking workshop" />
+    </figure>
+    <figure class="hero-practice-photo hero-practice-synthesis">
+      <img src="/images/hero-workshop-synthesis.webp" width="1300" height="634" alt="A workshop team synthesizing ideas across a wall of notes" />
+    </figure>
+    <div class="hero-practice-copy">
+      <span>Leadership in practice</span>
+      <strong>Bring the room into the decision.</strong>
+      <p>30+ workshops facilitated across leaders, designers and cross-functional teams.</p>
+    </div>
+  </section>
+
+  <section class="impact-proof shell" aria-label="Product and leadership impact">
+    <div class="metrics">
+      {metrics.map(([value, label]) => <div class="metric" data-reveal><strong>{value}</strong><span>{label}</span></div>)}
+      {leadershipMetrics.map(([value, label]) => <div class="metric metric-leadership" data-reveal><strong>{value}</strong><span>{label}</span></div>)}
+    </div>
+  </section>
+
+  <section class="principles shell" data-reveal>
+    <div class="principles-intro">
+      <p class="eyebrow">How I work</p>
+      <h2>Product judgment is the connective tissue.</h2>
+      <div class="principles-evidence" aria-label="Working-session system map">
+        <figure class="principles-evidence-main">
+          <img src="/images/how-i-work-system-map.webp" width="1000" height="487" alt="A technical system flow mapped collaboratively on a whiteboard" loading="lazy" />
+          <figcaption><strong>Map the system before shaping the screen.</strong><span>Go deep into the domain, understand the flow, and translate complexity into clarity.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+    <ol>
+      <li><span>01</span><div><strong>Frame the real problem</strong><p>Find the human decision hiding underneath the technical requirement.</p></div></li>
+      <li><span>02</span><div><strong>Lead under constraint</strong><p>Create direction without ignoring engineering, business, or operational reality.</p></div></li>
+      <li><span>03</span><div><strong>Design for trust</strong><p>Make system intent, evidence, control, and consequence visible.</p></div></li>
+      <li><span>04</span><div><strong>Build capability</strong><p>Leave teams with stronger judgment—not only a better interface.</p></div></li>
+    </ol>
+  </section>
+
+  <section id="work" class="work-section shell">
+    <header class="work-intro" data-reveal>
+      <p class="eyebrow">Case studies</p>
+    </header>
+    <div class="case-list">
+      <CaseCard href="/work/policy-optimization" number="01" label="Policy optimization" title="Make hidden risk visible before it becomes operational reality." summary="I redesigned firewall policy optimisation so teams could identify risk, understand its cause, and clean up with confidence." insight="The problem was not rule volume. It was a system that hid the important stuff." />
+      <CaseCard href="/work/agenticops" number="02" label="AgenticOps" title="When the network gets noisy, trust breaks first." summary="I designed AgenticOps to help operators cut through alert chaos, understand what matters, and move from insight to action." insight="Customers do not reject AI. They reject losing control when the stakes are real." theme="dark" />
+      <CaseCard href="/work/change-management" number="03" label="Change management" title="When too many hands touch one policy, control slips fast." summary="I redesigned change management for shared environments to make ownership visible, prevent collisions, and turn messy edits into coordinated decisions." insight="The core tension: invisible ownership creates visible risk." theme="warm" />
+    </div>
+  </section>
+
+  <section class="about-teaser shell" data-reveal>
+    <figure class="about-teaser-portrait"><img src="/images/profile-photo.webp" width="500" height="500" alt="Portrait of Pradipta Das Sarkar" loading="lazy" /><figcaption>Pradipta Das Sarkar · Bangalore, India</figcaption></figure>
+    <div class="about-teaser-content">
+      <p class="eyebrow">Beyond the work</p>
+      <h2>The same curiosity I bring to complex systems follows me everywhere.</h2>
+      <p>Architecture taught me structure. Travel taught me perspective. Photography taught me to notice. Leadership taught me that capability grows when it is shared.</p>
+      <dl class="about-teaser-proof"><div><dt>19</dt><dd>years of practice</dd></div><div><dt>46+</dt><dd>designers hired</dd></div><div><dt>30+</dt><dd>workshops facilitated</dd></div></dl>
+      <a class="text-link" href="/about">Meet the person behind the work <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const beliefCard = document.querySelector<HTMLElement>('[data-belief-card]');
+  const beliefTabs = [...(beliefCard?.querySelectorAll<HTMLButtonElement>('[data-belief-tab]') ?? [])];
+  const beliefCount = beliefCard?.querySelector<HTMLElement>('[data-belief-count]');
+
+  const selectBelief = (tab: HTMLButtonElement, focus = false) => {
+    beliefTabs.forEach((item) => {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(item.getAttribute('aria-controls') || '');
+      if (panel) panel.hidden = !selected;
+    });
+    if (beliefCount) beliefCount.textContent = `${tab.dataset.beliefTab} / 03`;
+    if (focus) tab.focus();
+  };
+
+  beliefTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectBelief(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? beliefTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + beliefTabs.length) % beliefTabs.length;
+      selectBelief(beliefTabs[nextIndex], true);
+    });
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  number: string;
+  label: string;
+  title: string;
+  summary: string;
+  insight: string;
+  theme?: 'light' | 'dark' | 'warm';
+}
+const { href, number, label, title, summary, insight, theme = 'light' } = Astro.props;
+---
+<article class:list={['case-card', `case-${theme}`]} data-reveal>
+  <div class="case-meta"><span>Case study {number}</span><span>{label}</span></div>
+  <h3>{title}</h3>
+  <p>{summary}</p>
+  <p class="case-insight">{insight}</p>
+  <a class="button" href={href} aria-label={`Read case study: ${title}`}>Open case study <span aria-hidden="true">→</span></a>
+</article>

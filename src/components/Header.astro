@@ -1,0 +1,14 @@
+---
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Pradipta Das Sarkar, home">
+    <span class="brand-mark" aria-hidden="true"><img src="/images/profile-photo.webp" alt="" width="40" height="40" /></span>
+    <span>Pradipta Das Sarkar</span>
+  </a>
+  <nav aria-label="Primary navigation">
+    <a href="/#work" aria-current={path.startsWith('/work') ? 'page' : undefined}>Work</a>
+    <a href="/about" aria-current={path === '/about' ? 'page' : undefined}>About</a>
+    <a href="/pradipta-resume-2026.pdf" target="_blank">Resume <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>

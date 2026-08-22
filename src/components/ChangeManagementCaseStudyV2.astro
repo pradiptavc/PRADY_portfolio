@@ -1,0 +1,145 @@
+---
+const chapters = [
+  {id:'change-summary',label:'Executive summary'},
+  {id:'change-problem',label:'The problem'},
+  {id:'change-role',label:'Role & leadership'},
+  {id:'change-horizons',label:'Two horizons'},
+  {id:'change-fix',label:'Immediate fix'},
+  {id:'change-north-star',label:'North star'},
+  {id:'change-system',label:'Workflow'},
+  {id:'change-people',label:'Kit & Nik'},
+  {id:'change-outcome',label:'Outcome'},
+  {id:'change-reflection',label:'Reflection'},
+];
+
+const systemMoves = [
+  ['01','Ticket ownership','Link every change to a durable ticket with a named owner, purpose and local control.'],
+  ['02','Review workflow','Give reviewers a queue, submitted-change context and a clear inspect-before-approval path.'],
+  ['03','Stage and release','Show when approved changes are ready to move forward instead of hiding the last-mile handoff.'],
+  ['04','Traceability','Keep comments, approvals, decisions and change logs attached to the work across handoffs.'],
+  ['05','Role-aware experience','Give Kit and Nik the context their responsibilities require without making either learn the entire permission model.'],
+  ['06','Phased evolution','Ship the immediate safety layer, then use the north star to guide a fuller collaboration system.'],
+];
+---
+
+<div class="deep-change" data-change-case>
+  <nav class="change-chapter-nav" aria-label="Change Management chapters">
+    <p>Inside this case</p>
+    <ol>{chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.label}</a></li>)}</ol>
+  </nav>
+
+  <details class="change-chapter-menu">
+    <summary>Explore this case study <span aria-hidden="true">＋</span></summary>
+    <nav aria-label="Change Management chapters on mobile"><ol>{chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.label}</a></li>)}</ol></nav>
+  </details>
+
+  <main class="change-narrative">
+    <section id="change-summary" class="change-chapter change-lead">
+      <p class="change-index">01 / Executive summary</p>
+      <h2>Policy collisions were a <em>coordination-confidence</em> problem.</h2>
+      <div class="lead-grid"><p>Several administrators could edit the same firewall policy across teams, roles and time zones. The product treated each edit as a configuration action, while the organisation experienced it as shared work with ownership, consequence and risk.</p><p class="lead-note">Over eight months, the design reduced immediate collision risk while shaping a more complete collaboration strategy—because a lock was useful, but it was never the whole answer.</p></div>
+    </section>
+
+    <section id="change-problem" class="change-chapter problem-chapter">
+      <p class="change-index">02 / The problem</p>
+      <h2>Correct policy. Missing coordination.</h2>
+      <p class="problem-summary">One administrator could overwrite another, ownership could become ambiguous, and urgent edits could bypass the context needed for a safe review. The interface showed configuration state—but not the social state surrounding it.</p>
+      <ul class="tension-list"><li><span>Visibility</span>Know who is actively working on a policy before making another change.</li><li><span>Collision prevention</span>Stop parallel edits from silently overwriting one another.</li><li><span>Reviewability</span>Give approvers the intent and evidence needed to judge a change.</li><li><span>Traceability</span>Preserve ownership and decisions when work moves between people.</li></ul>
+      <aside class="editorial-note">A firewall can reject bad traffic. It is less talented at resolving unclear team ownership.</aside>
+    </section>
+
+    <section id="change-role" class="change-chapter dark-chapter">
+      <p class="change-index">03 / Role & leadership</p>
+      <h2>I connected product urgency with research, architecture and execution.</h2>
+      <div class="role-grid"><p>I led the design end to end, but more importantly created the structure that helped the team respond well under pressure. I framed the immediate fix, shaped the longer-term north star, and translated cross-functional input into a coherent, safer change-management story.</p><dl><div><dt>Owned</dt><dd>Problem framing, workflow model and end-to-end interaction design</dd></div><div><dt>Core partnership</dt><dd>Product manager, UX researcher and engineering architect</dd></div><div><dt>Leadership move</dt><dd>Separated immediate risk reduction from system-level transformation</dd></div><div><dt>Delivery approach</dt><dd>Ship a bounded fix, then align the organisation around the north star</dd></div></dl></div>
+    </section>
+
+    <section id="change-horizons" class="change-chapter horizons-chapter">
+      <p class="change-index">04 / Two horizons</p>
+      <h2>One problem. Two clocks.</h2>
+      <p class="measure">The current release needed a practical safeguard. The product needed a better collaboration model. Treating those as the same deadline would have produced either a late fix or a shallow vision.</p>
+      <div class="horizon-grid"><article><span>Horizon 01 · Now</span><h3>Prevent accidental collisions.</h3><p>Introduce visible policy locking and read-only protection as the immediate safety layer.</p><strong>Measure of success</strong><small>Administrators can see ownership and avoid overwriting active work.</small></article><article><span>Horizon 02 · Next</span><h3>Make change collaboration legible.</h3><p>Build a system for authoring, review, staging, deployment and traceable handoffs across roles.</p><strong>Measure of success</strong><small>Teams understand who owns the change, what happens next and why it is safe.</small></article></div>
+    </section>
+
+    <section id="change-fix" class="change-chapter fix-chapter">
+      <p class="change-index">05 / Immediate fix</p>
+      <h2>The first move was not perfection. It was reducing collision risk inside a brutal delivery window.</h2>
+      <div class="fix-sequence">
+        <article>
+          <span>01</span>
+          <div class="fix-step-copy"><strong>Claim temporary ownership</strong><p>An administrator can deliberately lock the policy before editing, making ownership explicit rather than implied.</p></div>
+          <figure><a href="/images/change-management/immediate-fix-01.png" target="_blank" rel="noreferrer" aria-label="Open the claim temporary ownership interface at full size"><img src="/images/change-management/immediate-fix-01.png" alt="Firepower Management Center policy interface with the control used to lock or unlock a policy highlighted" loading="lazy" /></a><figcaption>Start with an explicit lock—not a silent assumption.</figcaption></figure>
+        </article>
+        <article>
+          <span>02</span>
+          <div class="fix-step-copy"><strong>Protect the active edit</strong><p>Once claimed, the policy confirms that the current administrator owns the edit and can work without an accidental overwrite.</p></div>
+          <figure><a href="/images/change-management/immediate-fix-02.png" target="_blank" rel="noreferrer" aria-label="Open the protected active edit interface at full size"><img src="/images/change-management/immediate-fix-02.png" alt="Firepower Management Center showing that the current administrator has locked the policy and is the only person who can edit it" loading="lazy" /></a><figcaption>The editor gets certainty while the work is active.</figcaption></figure>
+        </article>
+        <article>
+          <span>03</span>
+          <div class="fix-step-copy"><strong>Signal status clearly</strong><p>Everyone else sees who holds the lock and understands why the policy is temporarily unavailable for editing.</p></div>
+          <figure><a href="/images/change-management/immediate-fix-03.png" target="_blank" rel="noreferrer" aria-label="Open the policy lock status interface at full size"><img src="/images/change-management/immediate-fix-03.png" alt="Firepower Management Center telling another administrator that Prady has locked the policy and they cannot edit it" loading="lazy" /></a><figcaption>No guessing, no mystery overwrite, no awkward detective work.</figcaption></figure>
+        </article>
+      </div>
+      <div class="fix-verdict"><div><span>What it solved</span><p>Invisible concurrent edits and immediate overwrite risk.</p></div><div><span>What it revealed</span><p>Locks alone could not support review, staged release or accountable multi-team work.</p></div></div>
+    </section>
+
+    <section id="change-north-star" class="change-chapter north-star-chapter">
+      <p class="change-index">06 / North star</p>
+      <h2>From policy locking to a collaborative change-control system.</h2>
+      <p class="measure">After shipping the quick fix, I regrouped with product and architecture. The outcome shifted from “stop people colliding” to “help teams move changes through an understandable lifecycle.”</p>
+      <div class="north-flow"><article><span>Author</span><strong>Create with ownership and context</strong></article><b>→</b><article><span>Review</span><strong>Inspect, question and approve</strong></article><b>→</b><article><span>Stage</span><strong>Prepare the approved release</strong></article><b>→</b><article><span>Deploy</span><strong>Move with visible accountability</strong></article></div>
+      <blockquote>“The right answer was not just to block edits. It was to make collaboration legible.”</blockquote>
+    </section>
+
+    <section id="change-system" class="change-chapter system-chapter">
+      <p class="change-index">07 / Workflow</p>
+      <h2>The final design became a workflow—not a scattered collection of actions.</h2>
+      <div class="decision-stack">{systemMoves.map(([number,title,copy])=><article><span>{number}</span><div><strong>{title}</strong><p>{copy}</p></div></article>)}</div>
+      <figure class="workflow-board">
+        <div class="workflow-scroll" tabindex="0" aria-label="Horizontally scrollable ticket-management workflow">
+          <img src="/images/change-management/workflow-01-clean.png" alt="End-to-end ticket-management workflow showing policy authoring, validation, submission, review, rejection, approval, staging and deployment across Kit and Nik" loading="lazy" />
+        </div>
+        <figcaption><span>End-to-end workflow</span><p>The ticket moves from creation through authoring, review, staging and deployment.</p></figcaption>
+      </figure>
+    </section>
+
+    <section id="change-people" class="change-chapter people-chapter">
+      <p class="change-index">08 / Kit & Nik</p>
+      <h2>Two roles. One workflow. Different responsibility at every stage.</h2>
+      <div class="experience-stories">
+        <article class="experience-story kit-experience">
+          <header><div><span>01 · Policy editor</span><h3>Kit's experience</h3><p>Kit stays focused on assigned work: understand the queue, inspect the ticket and follow its change history.</p></div></header>
+          <ol class="experience-path" aria-label="Kit experience stages"><li>Manage my tickets</li><li>Inspect details & comments</li><li>Review change history</li></ol>
+          <figure><div class="experience-scroll" tabindex="0" aria-label="Horizontally scrollable Kit policy-editor experience"><img src="/images/change-management/kit-policy-editor-experience.png" alt="Kit policy-editor journey showing the authoring queue, ticket details and comments, and ticket change history" loading="lazy" /></div><figcaption><span>Kit’s view</span><p>One role, three connected moments, and no need to reconstruct the story from several tools.</p></figcaption></figure>
+        </article>
+        <article class="experience-story nik-experience">
+          <header><div><span>02 · Policy editor & administrator</span><h3>Nick's experience</h3><p>Nick works at a wider altitude: coordinate authoring, review submitted work and prepare approved changes for deployment.</p></div></header>
+          <ol class="experience-path" aria-label="Nik experience stages"><li>See organisational work</li><li>Filter by status</li><li>Review submissions</li><li>Inspect ticket detail</li><li>Stage approved changes</li></ol>
+          <figure><div class="experience-scroll" tabindex="0" aria-label="Horizontally scrollable Nik policy-editor and administrator experience"><img src="/images/change-management/nik-policy-editor-admin-experience.png" alt="Nik administrator journey showing authoring, ticket filtering, review, ticket details and staging approved changes" loading="lazy" /></div><figcaption><span>Nik’s view</span><p>The same system reveals broader control only where the administrator’s responsibility requires it.</p></figcaption></figure>
+        </article>
+      </div>
+      <p class="people-note">Same product. Different altitude. Nobody gets the “show me everything and hope I find my job” edition.</p>
+    </section>
+
+    <section id="change-outcome" class="change-chapter outcome-chapter">
+      <p class="change-index">09 / Outcome</p>
+      <h2>The work reframed change management as a collaboration problem—not a UI problem.</h2>
+      <div class="before-after"><article><span>Immediate value</span><h3>Safer editing now.</h3><ul><li>Visible temporary ownership</li><li>Read-only protection</li><li>Fewer accidental collisions</li></ul></article><article><span>Strategic value</span><h3>A clearer system next.</h3><ul><li>Durable ticket ownership</li><li>Review and staging workflow</li><li>Traceable decisions and handoffs</li></ul></article></div>
+      <p class="outcome-note">The leadership value was sequencing: protect the present without allowing the emergency fix to become the permanent product strategy.</p>
+    </section>
+
+    <section id="change-reflection" class="change-chapter reflection-chapter">
+      <p class="change-index">10 / Reflection</p>
+      <h2>Good enterprise collaboration is a product model—not a comments panel.</h2>
+      <div class="reflection-grid"><article><span>I learned</span><h3>Constraint can sharpen the sequence.</h3><p>The delivery pressure made the immediate risk unmistakable and forced a clean separation between relief and transformation.</p></article><article><span>I wish</span><h3>The system story had started earlier.</h3><p>Pairing the quick fix with the north-star narrative sooner would have helped stakeholders understand why locking was necessary but insufficient.</p></article><article><span>I wonder</span><h3>How far can ownership become proactive?</h3><p>Could future systems detect likely collisions, identify the right reviewer and surface organisational dependencies before work begins?</p></article></div>
+    </section>
+  </main>
+</div>
+
+<style>
+  .deep-change{width:min(1460px,calc(100vw - 48px));margin:0 auto 120px;display:grid;grid-template-columns:210px minmax(0,1120px);gap:clamp(48px,7vw,120px);align-items:start}.change-chapter-nav{position:sticky;top:48px;padding-top:112px;max-height:calc(100vh - 60px);overflow:auto}.change-chapter-nav p{margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.change-chapter-nav ol,.change-chapter-menu ol{list-style:none;margin:0;padding:0}.change-chapter-nav a{display:block;padding:6px 0;color:var(--muted);font-size:.76rem;text-decoration:none;transition:color .2s,transform .2s}.change-chapter-nav a:hover,.change-chapter-nav a:focus-visible{color:var(--ink);transform:translateX(4px)}.change-chapter-nav a:hover::before,.change-chapter-nav a:focus-visible::before{content:'— ';color:#d45f4c}.change-chapter-menu{display:none}.change-narrative{min-width:0}.change-chapter{scroll-margin-top:28px;padding:120px 0;border-top:1px solid var(--line)}.change-chapter:first-child{border-top:0}.change-index{margin:0 0 26px;color:#d45f4c;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.change-chapter h2{max-width:980px;font-size:clamp(2.5rem,5vw,5rem)}.change-lead h2{font-size:clamp(3rem,6vw,6.5rem)}.change-lead em{color:#d45f4c;font-style:normal}.lead-grid,.role-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,7vw,100px);align-items:start}.lead-grid{margin-top:65px;font-size:1.16rem}.lead-grid p{margin:0}.lead-note{padding:24px;border-top:3px solid #d45f4c;background:white;font-family:'Manrope';font-weight:600}.summary-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:65px;background:var(--line);border:1px solid var(--line)}.summary-proof article{min-height:145px;padding:22px;display:flex;flex-direction:column;background:var(--paper-bright)}.summary-proof span{font:600 1.65rem/1 'Manrope';letter-spacing:-.05em}.summary-proof p{margin:auto 0 0;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}.problem-chapter h2{white-space:nowrap;font-size:clamp(2.2rem,4vw,4rem)}.problem-summary,.measure{max-width:800px;margin:38px 0 0;color:var(--muted);font-size:1.12rem}.tension-list{list-style:none;margin:62px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 42px;border-top:1px solid var(--line)}.tension-list li{min-height:150px;padding:24px 0;border-bottom:1px solid var(--line)}.tension-list span{display:block;margin-bottom:24px;color:#d45f4c;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em}.editorial-note,.people-note,.outcome-note{margin:18px 0 0;padding:17px 20px;background:#ffe4dc;color:#5f2d23;font:600 .82rem/1.45 'Manrope'}.dark-chapter,.north-star-chapter{margin-right:calc((100vw - min(1460px,calc(100vw - 48px)))/-2);padding-left:clamp(24px,4vw,56px);padding-right:max(24px,calc((100vw - 1180px)/2));color:white;background:#111b31;border:0}.north-star-chapter{padding-top:92px;padding-bottom:72px}.dark-chapter .change-index,.north-star-chapter .change-index{color:#ff9a84}.role-grid{margin-top:65px}.role-grid>p{color:#d2dde6;font-size:1.2rem}.role-grid dl{margin:0}.role-grid dl div{padding:16px 0;border-top:1px solid #345064}.role-grid dt{color:#9ab4c5;font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}.role-grid dd{margin:7px 0 0}.horizon-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:60px}.horizon-grid article{min-height:340px;padding:32px;display:flex;flex-direction:column;background:var(--paper-bright);border-top:4px solid #d45f4c}.horizon-grid span{color:#d45f4c;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em}.horizon-grid h3{margin:55px 0 18px;font-size:2rem}.horizon-grid p{color:var(--muted)}.horizon-grid strong{margin-top:auto;padding-top:35px;font-size:.72rem;text-transform:uppercase}.horizon-grid small{margin-top:8px;color:var(--muted);font-size:.75rem}.fix-sequence{margin-top:65px;border-top:1px solid var(--line)}.fix-sequence article,.decision-stack article{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:30px 0;border-bottom:1px solid var(--line)}.fix-sequence article{padding-block:44px;align-items:start}.fix-sequence span,.decision-stack>article>span{color:#d45f4c;font-weight:600}.fix-sequence strong,.decision-stack strong{font:600 1.3rem 'Manrope'}.fix-sequence p,.decision-stack p{max-width:700px;margin:10px 0 0;color:var(--muted)}.fix-sequence figure{grid-column:2;margin:18px 0 0;width:min(100%,860px);border:1px solid var(--line);background:var(--paper-bright)}.fix-sequence figure a{display:block;background:#edf1f4}.fix-sequence figure a:focus-visible{outline:3px solid #d45f4c;outline-offset:3px}.fix-sequence figure img{display:block;width:100%;height:auto}.fix-sequence figcaption{padding:12px 15px;color:var(--muted);font-size:.72rem}.fix-verdict{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:25px;background:var(--line);border:1px solid var(--line)}.fix-verdict div{padding:24px;background:var(--paper-bright)}.fix-verdict span{color:#d45f4c;font-size:.67rem;font-weight:600;text-transform:uppercase}.fix-verdict p{margin:32px 0 0}.north-star-chapter .measure{color:#aebbc8}.north-flow{display:flex;align-items:stretch;gap:10px;margin-top:46px}.north-flow article{flex:1;padding:22px;background:#192740}.north-flow article span{color:#ff9a84;font-size:.65rem;text-transform:uppercase}.north-flow strong{display:block;margin-top:38px;font:600 1.05rem 'Manrope'}.north-flow>b{align-self:center;color:#ff9a84}.north-star-chapter blockquote{margin:36px 0 0;padding:20px 0 0;border-top:3px solid #ff9a84;font:600 clamp(.95rem,1.5vw,1.3rem)/1.2 'Manrope';letter-spacing:-.025em;white-space:nowrap}.decision-stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:42px;background:var(--line);border:1px solid var(--line)}.decision-stack article{display:block;min-height:150px;padding:18px;border:0;background:var(--paper-bright)}.decision-stack>article>span{font-size:.64rem;letter-spacing:.08em}.decision-stack article div{margin-top:18px}.decision-stack strong{font-size:.98rem;line-height:1.2}.decision-stack p{margin-top:7px;font-size:.75rem;line-height:1.45}.source-board{margin:70px 0 0;border:1px solid var(--line);background:var(--paper-bright)}.source-board>div{height:min(72vh,820px);overflow:auto;background:#111}.source-board>div:focus-visible{outline:3px solid #d45f4c;outline-offset:-3px}.source-board img{width:100%;height:auto;display:block}.source-board figcaption{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:20px}.source-board figcaption span{color:#d45f4c;font-size:.66rem;font-weight:600;text-transform:uppercase}.source-board figcaption p{margin:0;color:var(--muted);font-size:.78rem}.workflow-board{margin:70px 0 0;border:1px solid var(--line);background:var(--paper-bright)}.workflow-scroll{overflow-x:auto;overflow-y:hidden;background:#fff;scrollbar-color:#d45f4c #e6e8ea;scrollbar-width:auto}.workflow-scroll:focus-visible{outline:3px solid #d45f4c;outline-offset:-3px}.workflow-scroll img{display:block;width:2032px;max-width:none;height:auto}.workflow-board figcaption{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:20px;border-top:1px solid var(--line)}.workflow-board figcaption span{color:#d45f4c;font-size:.66rem;font-weight:600;text-transform:uppercase}.workflow-board figcaption p{margin:0;color:var(--muted);font-size:.78rem}.persona-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:65px;background:var(--line);border:1px solid var(--line)}.persona-grid article{min-height:360px;padding:30px;display:flex;flex-direction:column;background:var(--paper-bright)}.persona-grid article>span{color:#d45f4c;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em}.persona-grid strong{margin-top:30px;font:600 3.5rem/1 'Manrope';letter-spacing:-.07em}.persona-grid h3{margin-top:auto;font-size:1.35rem;line-height:1.1}.persona-grid p{color:var(--muted);font-size:.9rem}.before-after{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:65px;background:var(--line);border:1px solid var(--line)}.before-after article{padding:36px;background:var(--paper-bright)}.before-after article:last-child{background:#f7e8e2}.before-after span{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#d45f4c}.before-after h3{margin:60px 0 28px;font-size:2rem}.before-after ul{padding-left:18px}.reflection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:65px;background:var(--line);border:1px solid var(--line)}.reflection-grid article{padding:30px;background:var(--paper-bright)}.reflection-grid span{color:#d45f4c;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em}.reflection-grid h3{margin:55px 0 25px;font-size:1.65rem}.reflection-grid p{color:var(--muted)}
+  .experience-stories{display:grid;gap:82px;margin-top:65px}.experience-story{min-width:0}.experience-story+article{padding-top:74px;border-top:1px solid var(--line)}.experience-story>header{display:grid;grid-template-columns:.72fr 1fr;gap:clamp(30px,6vw,80px);align-items:end}.experience-story>header span{color:#d45f4c;font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.experience-story>header h3{margin:10px 0 0;font-size:clamp(2.1rem,4vw,3.6rem)}.experience-story>header p{margin:0;color:var(--muted);font-size:1rem}.kit-experience>header,.nik-experience>header{display:block}.kit-experience>header h3,.nik-experience>header h3{white-space:nowrap}.kit-experience>header p,.nik-experience>header p{display:block;max-width:none;margin:32px 0 0;font-size:.82rem;line-height:1.5;white-space:nowrap}.experience-path{display:flex;gap:8px;list-style:none;margin:30px 0 14px;padding:0;overflow-x:auto}.experience-path li{flex:0 0 auto;padding:8px 11px;border:1px solid var(--line);background:var(--paper-bright);color:var(--muted);font-size:.68rem}.experience-path li+li::before{content:'→';margin-right:11px;color:#d45f4c}.experience-story figure{margin:0;border:1px solid var(--line);background:var(--paper-bright)}.experience-scroll{overflow-x:auto;overflow-y:hidden;background:#fff;scrollbar-color:#d45f4c #e6e8ea;scrollbar-width:auto}.experience-scroll:focus-visible{outline:3px solid #d45f4c;outline-offset:-3px}.experience-scroll img{display:block;max-width:none;height:auto}.kit-experience .experience-scroll img{width:2701px}.nik-experience .experience-scroll img{width:3641px}.experience-story figcaption{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:17px 19px;border-top:1px solid var(--line)}.experience-story figcaption span{color:#d45f4c;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.experience-story figcaption p{margin:0;color:var(--muted);font-size:.76rem}
+  @media(max-width:1050px){.deep-change{grid-template-columns:1fr;width:min(700px,calc(100% - 32px));gap:0}.change-chapter-nav{display:none}.change-chapter-menu{display:block;position:sticky;top:0;z-index:15;margin-inline:calc((100vw - min(100% - 32px,700px))/-2);padding:0 16px;background:var(--paper);border-block:1px solid var(--line)}.change-chapter-menu summary{padding:15px 0;display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;cursor:pointer}.change-chapter-menu nav{padding-bottom:18px}.change-chapter-menu ol{columns:2}.change-chapter-menu a{display:block;padding:5px 0;color:var(--muted);font-size:.76rem;text-decoration:none}.dark-chapter,.north-star-chapter{margin-inline:calc((100vw - min(100% - 32px,700px))/-2);padding-inline:max(16px,calc((100vw - 700px)/2))}}
+  @media(max-width:700px){.change-chapter{padding:85px 0}.lead-grid,.role-grid,.horizon-grid,.summary-proof,.persona-grid,.before-after,.reflection-grid,.decision-stack{grid-template-columns:1fr}.problem-chapter h2{white-space:normal}.tension-list{grid-template-columns:1fr}.north-flow{display:grid;grid-template-columns:1fr}.north-flow>b{justify-self:center;transform:rotate(90deg)}.north-star-chapter blockquote{white-space:normal}.source-board figcaption,.workflow-board figcaption,.experience-story>header,.experience-story figcaption{grid-template-columns:1fr}.experience-story>header{gap:18px}.kit-experience>header h3,.nik-experience>header h3,.kit-experience>header p,.nik-experience>header p{white-space:normal}.experience-stories{gap:62px}.experience-story+article{padding-top:58px}.fix-sequence article{grid-template-columns:38px 1fr}.fix-sequence figure{grid-column:1/-1}.fix-verdict{grid-template-columns:1fr}}
+</style>

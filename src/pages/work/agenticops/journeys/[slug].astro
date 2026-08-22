@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import AgenticInsightJourney from '../../../../components/AgenticInsightJourney.astro';
+import AgenticAssignJourney from '../../../../components/AgenticAssignJourney.astro';
+import AgenticBulkAssignJourney from '../../../../components/AgenticBulkAssignJourney.astro';
+import AgenticManageJobJourney from '../../../../components/AgenticManageJobJourney.astro';
+import AgenticConfigureJourney from '../../../../components/AgenticConfigureJourney.astro';
+
+export function getStaticPaths() {
+  const journeys = [
+    { slug:'insight-page', phase:'Phase 01 · AI Ops', number:'01', title:'Insight page', summary:'Understand, investigate and prioritise an operational signal before any work is assigned.' },
+    { slug:'assign-from-insights', phase:'Phase 02 · AgenticOps', number:'02', title:'Assign a job from Insights', summary:'Turn one insight into a bounded job with a clear goal, scope and accountable operator.' },
+    { slug:'bulk-assign-insights', phase:'Phase 02 · AgenticOps', number:'03', title:'Bulk-assign insights', summary:'Group related insights and assign them as one controlled operation without losing reviewability.' },
+    { slug:'manage-agent-job', phase:'Phase 02 · AgenticOps', number:'04', title:'Manage a job in Agent Workforce', summary:'Track progress, inspect evidence and intervene while the agent is working.' },
+    { slug:'configure-agent', phase:'Phase 02 · AgenticOps', number:'05', title:'Configure an AI agent', summary:'Define scope, operating limits and behaviour before an agent begins work.' },
+  ];
+  return journeys.map(journey => ({ params:{ slug:journey.slug }, props:{ journey } }));
+}
+
+const { journey } = Astro.props;
+---
+
+<BaseLayout title={`${journey.title} — AgenticOps journey`} description={journey.summary}>
+  {journey.slug === 'insight-page' ? <AgenticInsightJourney /> : journey.slug === 'assign-from-insights' ? <AgenticAssignJourney /> : journey.slug === 'bulk-assign-insights' ? <AgenticBulkAssignJourney /> : journey.slug === 'manage-agent-job' ? <AgenticManageJobJourney /> : journey.slug === 'configure-agent' ? <AgenticConfigureJourney /> : <main class="journey-shell">
+    <a href="/work/agenticops#agentic-trust">← Back to Trust journey</a>
+    <p>{journey.phase} · Journey {journey.number}</p>
+    <h1>{journey.title}</h1>
+    <h2>{journey.summary}</h2>
+    <aside><span>Journey detail coming next</span><p>This destination is ready. We’ll translate the corresponding Figma journey into a complete, presentation-ready narrative in the next iteration.</p></aside>
+  </main>}
+</BaseLayout>
+
+<style>
+  .journey-shell{width:min(1120px,calc(100% - 48px));min-height:78vh;margin:0 auto;padding:42px 0 110px}.journey-shell>a{display:inline-block;margin-bottom:110px;color:var(--muted);font-size:.75rem;text-decoration:none}.journey-shell>p{color:#486fd5;font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.journey-shell h1{max-width:1050px;margin:24px 0;font-size:clamp(3.4rem,7vw,7rem);line-height:.92;letter-spacing:-.07em}.journey-shell h2{max-width:780px;margin:35px 0 90px;color:var(--muted);font-size:clamp(1.15rem,2vw,1.8rem);line-height:1.35}.journey-shell aside{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:28px;background:#17243c;color:white}.journey-shell aside span{color:#72cbe9;font-size:.63rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}.journey-shell aside p{max-width:620px;margin:0;color:#b5c1d2;font-size:.78rem;line-height:1.5}@media(max-width:700px){.journey-shell{width:calc(100% - 32px)}.journey-shell>a{margin-bottom:70px}.journey-shell aside{grid-template-columns:1fr}}
+</style>

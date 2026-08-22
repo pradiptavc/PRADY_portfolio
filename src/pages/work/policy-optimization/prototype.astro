@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const prototypeUrl = 'https://www.figma.com/proto/BFUEc3w1AevoOKXsDExocz/Prady_Case-Studies?node-id=1663-145840&scaling=scale-down&content-scaling=fixed&page-id=602%3A37215&starting-point-node-id=1663%3A145840';
+const embedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(prototypeUrl)}`;
+---
+
+<BaseLayout
+  title="Policy Analyzer & Optimizer prototype"
+  description="Clickable Figma prototype for the Policy Analyzer & Optimizer case study."
+>
+  <main class="prototype-viewer">
+    <header class="prototype-bar">
+      <a href="/work/policy-optimization#prototype"><span aria-hidden="true">←</span> Back to clickable prototype</a>
+    </header>
+    <div class="prototype-frame">
+      <iframe src={embedUrl} title="Policy Analyzer & Optimizer clickable Figma prototype" allowfullscreen></iframe>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .prototype-viewer{min-height:100vh;padding:0 18px 18px;background:#071522}.prototype-bar{position:sticky;z-index:10;top:0;min-height:68px;padding:14px clamp(14px,3vw,38px);display:flex;align-items:center;gap:24px;background:#071522eF;border-bottom:1px solid #294253;backdrop-filter:blur(14px)}.prototype-bar a{display:inline-flex;align-items:center;gap:10px;color:white;font-size:.78rem;font-weight:600;text-decoration:none}.prototype-bar a:hover{text-decoration:underline}.prototype-frame{height:calc(100vh - 86px);min-height:620px;background:#0b2235}.prototype-frame iframe{display:block;width:100%;height:100%;border:0}
+  @media(max-width:620px){.prototype-viewer{padding-inline:8px}.prototype-bar{padding-inline:10px}.prototype-frame{height:calc(100vh - 78px);min-height:520px}}
+</style>

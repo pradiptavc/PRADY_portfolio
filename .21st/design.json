@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "project": {
+    "name": "Pradipta Portfolio",
+    "productType": "Editorial design leadership portfolio",
+    "stack": ["Astro", "TypeScript", "MDX", "CSS"]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light editorial with dark feature moments",
+    "colors": {"paper":"#f4f2ed","ink":"#101113","cobalt":"#2458d8","navy":"#061427","cyan":"#7dd9ec","coral":"#e46f57"},
+    "typography": {"display":"Manrope","body":"DM Sans"},
+    "spacing": {},
+    "radius": {"control":"999px","surface":"12px"},
+    "shadows": {},
+    "motion": {"reveal":"subtle 24px rise, 700ms","reducedMotion":"disabled"},
+    "density": "spacious editorial"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": ["Preserve generous whitespace and punchy case-study tensions","Meet WCAG AA and reduced-motion expectations","Use real evidence and authentic photography"],
+    "avoid": ["Glassmorphism","Excessive cards","Decorative motion without narrative purpose","Generic stock photography"]
+  },
+    "decisions": ["Refine and elevate Figma boards 01 and 09 rather than redesigning them","Use the 21st editorial hero and portfolio gallery patterns as composition inspiration only","Use one deep navy AgenticOps feature to create rhythm and signal trust","Align the landing-page working-belief panel with the hero top edge and express its philosophy as a compact three-signal decision compass","Use Pradipta's original board-09 photography as full editorial story chapters for travel, family energy, landscapes and cricket","Use the original Langza Monastery Spiti Valley night photograph as the About hero's single visual anchor, without overlapping or secondary images","Treat the global contact footer as a warm invitation card with conversational copy, three direct response paths, and a toned-down authentic whiteboard background"],
+  "evidence": [],
+  "generatedAt": "2026-08-06T12:41:00.863Z"
+}

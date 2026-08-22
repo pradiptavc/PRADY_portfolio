@@ -1,0 +1,73 @@
+---
+const states = [
+  ['Active insights','Newly generated insights appear as active. Operators can filter and sort by severity, type, device and pillar before deciding what deserves attention.'],
+  ['Resolved automatically','Some insights expire or resolve when their threshold condition ends. The system marks the resolution source and keeps the event in history for audit and compliance.'],
+  ['Information only','Advisory signals—such as an end-of-life date still two years away—remain visible without inflating urgent counts. Useful context, minus the manufactured panic.'],
+];
+const actions = [
+  ['Snooze or defer','Set an hour, day, week or custom period. The insight reactivates automatically and remains identifiable through a snoozed filter.'],
+  ['Dismiss','Remove an invalid, false-positive or already-tracked insight from the active count, with justification and stronger confirmation for critical findings.'],
+  ['Retrieve or reinstate','Review dismissed history, filter by dismissal reason and restore one or many insights when the operating context changes.'],
+  ['Acknowledge','Record that an insight has been seen without presenting it as unresolved dashboard work.'],
+];
+const decisions = [
+  ['False positive / buggy insight','Allow reporting as a false positive, send useful telemetry for product improvement and preserve the event in dismissed or reported history.'],
+  ['Bulk actions','Select multiple insights, then dismiss, snooze or change state without turning repetitive administration into a lifestyle.'],
+  ['Audit trail','Log every state change—active, snoozed, dismissed and restored—so compliance reviews and incident post-mortems can answer who changed what and why.'],
+  ['Role-specific controls','Apply persona guardrails: administrators can snooze operational issues, operations leaders can dismiss appropriate findings, and high-severity security actions remain restricted.'],
+];
+const images = [
+  ['agentic-insight-vertical-title.png','Exploration 01','A vertical title treatment tested hierarchy against a dense operational canvas.'],
+  ['agentic-insight-horizontal-title.png','Exploration 02','The horizontal treatment increased scan speed and left more room for insight evidence.'],
+  ['agentic-insight-revisit.png','Revisited direction','The structure was simplified after reviewing balance, hierarchy and action visibility.'],
+  ['agentic-insight-visual-balance.png','Visual balance','Device health, insight distribution and priority were tuned as one composition.'],
+  ['agentic-insight-pillar.png','Pillar view','A pillar-led view tested whether operators could orient by operational domain.'],
+  ['agentic-insight-pillar-device.png','Pillar + device','The combined model connected system-level patterns with device-level evidence.'],
+  ['agentic-insight-device.png','Device view','A device-first variation supported operators who begin with known infrastructure.'],
+  ['agentic-insight-empty.png','No-insights state','The empty state explains system health without rewarding the dashboard for simply being quiet.'],
+  ['agentic-insight-filtered.png','Filtered state','Applied filters keep the active question visible while narrowing the evidence set.'],
+];
+---
+
+<div class="insight-journey">
+  <header class="insight-hero">
+    <a href="/work/agenticops#agentic-trust">← Back to Trust journey</a>
+    <p>Journey 01 · Insight page</p>
+    <h1>Before an agent can act, the signal has to make sense.</h1>
+    <div><p>The first journey establishes the trust foundation: help an operator understand what changed, decide whether it matters and control what happens next.</p><aside>Phase 01 · AI Ops<br/><b>Understanding before automation</b></aside></div>
+  </header>
+
+  <nav aria-label="Insight journey chapters"><a href="#exploration">Exploration</a><a href="#states">Insight states</a><a href="#actions">Insight actions</a><a href="#decisions">Phase 2 decisions</a><a href="#settings">Settings</a></nav>
+
+  <section id="exploration" class="journey-section exploration">
+    <p class="index">01 / Design exploration</p><h2>Finding the right hierarchy before polishing the dashboard.</h2>
+    <p class="lead">The exploration tested title direction, information density, device-versus-pillar orientation and the balance between system health and actionable insight. Each screen below is an exact artifact exported from the Figma board.</p>
+    <div class="artifact-grid">{images.map(([file,label,caption],index) => <figure class:list={{wide:index>1}}><div><img src={`/images/agentic-insight/${file}`} alt={`${label}: AgenticOps Insight Page design exploration`} loading={index>1?'lazy':'eager'} /></div><figcaption><span>{label}</span><p>{caption}</p></figcaption></figure>)}</div>
+  </section>
+
+  <section id="states" class="journey-section dark-section">
+    <p class="index">02 / Insight states</p><h2>Not every signal deserves the same urgency—or the same shelf life.</h2>
+    <div class="state-grid">{states.map(([title,copy],index) => <article><span>{String(index+1).padStart(2,'0')}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+  </section>
+
+  <section id="actions" class="journey-section">
+    <p class="index">03 / Insight actions</p><h2>Give operators a useful vocabulary between “fix now” and “ignore forever.”</h2>
+    <div class="action-grid">{actions.map(([title,copy],index) => <article><span>{String(index+1).padStart(2,'0')}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
+  </section>
+
+  <section id="decisions" class="journey-section decision-section">
+    <p class="index">04 / Needed decisions in Phase 2</p><h2>Agentic action introduced four decisions the interface could not politely avoid.</h2>
+    <div class="decision-grid">{decisions.map(([title,copy]) => <article><h3>{title}</h3><p>{copy}</p></article>)}</div>
+  </section>
+
+  <section id="settings" class="journey-section settings-section">
+    <p class="index">05 / Settings</p><h2>Governance belongs in the journey—not in a forgotten admin drawer.</h2>
+    <div class="settings-card"><div><span>Dismissal reason</span><b>Mandatory or optional</b><p>Require a reason such as false positive, acknowledged or not relevant.</p></div><div><span>Dismissal duration</span><b>Permanent or temporary</b><p>Allow automatic reset after a defined number of days.</p></div><div><span>Automatic restoration</span><b>When the anomaly returns</b><p>Restore a dismissed insight if the same condition recurs within the chosen window.</p></div><div><span>Dismissal scope</span><b>Device or global</b><p>Apply the choice only to one device—or consistently across matching devices.</p></div></div>
+    <a class="back-card" href="/work/agenticops#agentic-trust"><span><small>Journey complete</small><strong>Return to the five connected journeys</strong></span><b>Back to Trust journey →</b></a>
+  </section>
+</div>
+
+<style>
+  .insight-journey{width:min(1180px,calc(100% - 48px));margin:0 auto;padding-bottom:110px}.insight-hero{padding:44px 0 100px}.insight-hero>a{display:inline-block;margin-bottom:95px;color:var(--muted);font-size:.75rem;text-decoration:none}.insight-hero>p,.index{color:#486fd5;font-size:.66rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.insight-hero h1{max-width:1100px;margin:28px 0 55px;font-size:clamp(3.5rem,7vw,7rem);line-height:.9;letter-spacing:-.075em}.insight-hero>div{display:grid;grid-template-columns:1.2fr .8fr;gap:60px}.insight-hero>div>p{max-width:700px;margin:0;color:var(--muted);font-size:1.08rem}.insight-hero aside{padding:20px 24px;border-left:3px solid #598cff;background:#e2eafb;color:var(--muted);font-size:.68rem}.insight-hero aside b{display:block;margin-top:8px;color:var(--ink);font:600 .9rem 'Manrope'}.insight-journey>nav{position:sticky;top:0;z-index:10;display:flex;gap:8px;padding:11px 0;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(12px);border-block:1px solid var(--line);overflow:auto}.insight-journey>nav a{padding:8px 11px;color:var(--muted);font-size:.68rem;white-space:nowrap;text-decoration:none}.journey-section{scroll-margin-top:70px;padding:100px 0;border-bottom:1px solid var(--line)}.journey-section h2{max-width:1000px;margin:22px 0 34px;font-size:clamp(2.7rem,5vw,5rem)}.lead{max-width:850px;color:var(--muted);font-size:.95rem}.artifact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:60px}.artifact-grid figure{margin:0;background:var(--paper-bright)}.artifact-grid figure.wide{grid-column:1/-1}.artifact-grid figure>div{aspect-ratio:16/10;overflow:hidden;background:#10171d}.artifact-grid figure.wide>div{aspect-ratio:16/8.7}.artifact-grid img{width:100%;height:100%;object-fit:contain;display:block}.artifact-grid figcaption{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:18px}.artifact-grid figcaption span{color:#486fd5;font-size:.64rem;font-weight:600;text-transform:uppercase}.artifact-grid figcaption p{margin:0;color:var(--muted);font-size:.71rem}.dark-section{margin-inline:calc((100vw - min(1180px,calc(100vw - 48px)))/-2);padding-inline:max(24px,calc((100vw - 1180px)/2));background:#101a2e;color:white;border:0}.dark-section .index{color:#72cbe9}.state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:52px}.state-grid article{min-height:260px;padding:24px;display:flex;flex-direction:column;background:#192640}.state-grid span{color:#72cbe9;font-size:.64rem}.state-grid h3{margin:38px 0 18px;font-size:1.3rem}.state-grid p{margin:auto 0 0;color:#aab7ca;font-size:.74rem}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.action-grid article{padding:24px;display:grid;grid-template-columns:44px 1fr;gap:16px;background:var(--paper-bright)}.action-grid span{color:#486fd5;font-size:.67rem}.action-grid h3{margin:0 0 14px;font-size:1.25rem}.action-grid p{margin:0;color:var(--muted);font-size:.75rem}.decision-section{background:#e5ecfa;padding-inline:clamp(22px,5vw,55px)}.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.decision-grid article{min-height:210px;padding:25px;background:white;border-top:3px solid #598cff}.decision-grid h3{margin:0 0 40px;font-size:1.2rem}.decision-grid p{color:var(--muted);font-size:.75rem}.settings-card{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.settings-card>div{padding:22px;background:var(--paper-bright)}.settings-card span{color:#486fd5;font-size:.62rem;text-transform:uppercase}.settings-card b{display:block;margin:35px 0 16px;font:600 1rem/1.25 'Manrope'}.settings-card p{color:var(--muted);font-size:.7rem}.back-card{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:60px;padding:27px;background:#17243c;color:white;text-decoration:none}.back-card small{display:block;margin-bottom:8px;color:#72cbe9;text-transform:uppercase}.back-card strong{font:600 1.15rem 'Manrope'}.back-card>b{color:#72cbe9;font-size:.72rem}
+  @media(max-width:760px){.insight-journey{width:calc(100% - 32px)}.insight-hero{padding-bottom:70px}.insight-hero>a{margin-bottom:65px}.insight-hero>div,.artifact-grid,.state-grid,.action-grid,.decision-grid,.settings-card{grid-template-columns:1fr}.artifact-grid figure.wide{grid-column:auto}.artifact-grid figure.wide>div,.artifact-grid figure>div{aspect-ratio:16/10}.journey-section{padding:75px 0}.dark-section{margin-inline:-16px;padding-inline:16px}.decision-section{margin-inline:-16px;padding-inline:16px}.artifact-grid figcaption{grid-template-columns:1fr}.back-card{align-items:flex-start;flex-direction:column}}
+</style>
