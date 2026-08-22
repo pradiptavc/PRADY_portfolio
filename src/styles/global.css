@@ -131,18 +131,19 @@ em { font-style: normal; color: var(--blue); }
 .about-teaser-proof dd { margin: 7px 0 0; color: #ffffff9c; font-size: .65rem; }
 .about-teaser .text-link { align-self: flex-start; color: white; }
 .site-footer { width: var(--shell); margin: auto; padding: 110px 0 38px; }
-.footer-invitation { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr); gap: clamp(54px, 8vw, 120px); padding: clamp(38px, 6vw, 78px); overflow: hidden; color: white; background-color: var(--ink); background-image: linear-gradient(90deg, #101113c9 0%, #101113d6 52%, #101113eb 100%), url('/images/how-i-work-interface-sketches.webp'); background-size: cover; background-position: center; background-blend-mode: normal, luminosity; }
+.footer-invitation { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr); gap: clamp(48px, 7vw, 100px); align-items: center; padding: clamp(38px, 6vw, 78px); overflow: hidden; color: white; background-color: var(--ink); background-image: linear-gradient(90deg, #101113c9 0%, #101113d6 52%, #101113eb 100%), url('/images/how-i-work-interface-sketches.webp'); background-size: cover; background-position: center; background-blend-mode: normal, luminosity; }
 .footer-invitation::before, .footer-invitation::after { content: ''; position: absolute; width: 54px; aspect-ratio: 1; border-radius: 50%; background: var(--paper); }
 .footer-invitation::before { top: -27px; left: -27px; }
 .footer-invitation::after { right: -27px; bottom: -27px; }
 .footer-copy { position: relative; z-index: 1; }
 .footer-copy .eyebrow { margin-top: 0; color: var(--cyan); }
-.site-footer h2 { max-width: 780px; font-size: clamp(2.8rem, 5.4vw, 5.8rem); }
-.site-footer h2 em { color: var(--cyan); }
-.footer-note { max-width: 650px; margin: 34px 0 0; color: #ffffffb8; font-size: 1.02rem; line-height: 1.6; }
+.site-footer h2 { max-width: 760px; font-size: clamp(2.65rem, 4.6vw, 5rem); line-height: .98; }
+.site-footer h2 span { display: block; white-space: nowrap; }
+.site-footer h2 em { display: block; margin-top: .56em; color: var(--cyan); }
+.footer-note { max-width: 650px; margin: 28px 0 0; color: #ffffffb8; font-size: 1.02rem; line-height: 1.6; }
 .footer-aside { display: inline-block; margin: 32px 0 0; padding: 8px 13px; border: 1px solid #ffffff3d; border-radius: 999px; color: #ffffffc9; font-size: .7rem; letter-spacing: .02em; }
-.footer-actions { position: relative; z-index: 1; align-self: end; display: flex; flex-direction: column; padding-bottom: 4px; border-top: 1px solid #ffffff38; }
-.footer-actions a { display: grid; grid-template-columns: 76px minmax(0, 1fr) 20px; gap: 14px; align-items: center; min-height: 82px; padding: 16px 0; color: white; border-bottom: 1px solid #ffffff38; text-decoration: none; transition: color .2s ease, padding .2s ease; }
+.footer-actions { position: relative; z-index: 1; align-self: center; display: flex; width: 100%; flex-direction: column; border-top: 1px solid #ffffff38; }
+.footer-actions a { display: grid; grid-template-columns: 72px minmax(0, 1fr) 20px; gap: 14px; align-items: center; min-height: 74px; padding: 14px 0; color: white; border-bottom: 1px solid #ffffff38; text-decoration: none; transition: color .2s ease, padding .2s ease; }
 .footer-actions a:hover { padding-left: 10px; color: var(--cyan); }
 .footer-actions a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 5px; }
 .footer-actions span { color: #ffffff85; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
@@ -383,6 +384,7 @@ em { font-style: normal; color: var(--blue); }
 
 @media (max-width: 520px) {
   .site-header nav a:first-child { display: none; }
+  .site-footer h2 span { white-space: normal; }
   h1 { font-size: 2.8rem; }
   .hero { padding-top: 36px; }
   .about-hero { padding-bottom: 70px; gap: 42px; }
